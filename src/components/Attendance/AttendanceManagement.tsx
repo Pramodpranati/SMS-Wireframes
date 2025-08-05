@@ -14,7 +14,7 @@ export const AttendanceManagement: React.FC = () => {
 
   const selectedGradeData = grades.find(g => g.id === selectedGrade);
   const selectedSectionData = selectedGradeData?.sections.find(s => s.id === selectedSection);
-  const sectionStudents = students.filter(s => s.sectionId === selectedSection);
+  const sectionStudents = students.filter((s: any) => s?.sectionId === selectedSection);
 
   const handleAttendanceChange = (studentId: string, status: 'present' | 'absent') => {
     setAttendanceData(prev => ({
@@ -68,7 +68,7 @@ export const AttendanceManagement: React.FC = () => {
           <Filter className="w-5 h-5 text-gray-400" />
           <h3 className="text-lg font-medium text-gray-800">Select Class & Date</h3>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Grade</label>
@@ -87,7 +87,7 @@ export const AttendanceManagement: React.FC = () => {
               ))}
             </select>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Section</label>
             <select
@@ -107,7 +107,7 @@ export const AttendanceManagement: React.FC = () => {
               ))}
             </select>
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Date</label>
             <input
@@ -117,7 +117,7 @@ export const AttendanceManagement: React.FC = () => {
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Session</label>
             <select
@@ -145,14 +145,14 @@ export const AttendanceManagement: React.FC = () => {
                   {selectedDate} • {selectedSession.charAt(0).toUpperCase() + selectedSession.slice(1)} Session
                 </p>
               </div>
-              
+
               <div className="flex items-center space-x-4">
                 <div className="text-sm text-gray-600">
                   Present: <span className="font-medium text-green-600">{counts.present}</span> |
                   Absent: <span className="font-medium text-red-600">{counts.absent}</span> |
                   Total: <span className="font-medium">{counts.total}</span>
                 </div>
-                
+
                 <div className="flex items-center space-x-2">
                   <button
                     onClick={() => handleSelectAll('present')}
@@ -175,40 +175,38 @@ export const AttendanceManagement: React.FC = () => {
 
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {sectionStudents.map(student => (
+              {sectionStudents.map((student: any) => (
                 <div key={student.id} className="border border-gray-200 rounded-lg p-4">
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <h4 className="font-medium text-gray-800">{student.name}</h4>
-                      <p className="text-sm text-gray-500">Roll: {student.rollNumber}</p>
+                      <h4 className="font-medium text-gray-800">{student?.name}</h4>
+                      <p className="text-sm text-gray-500">Roll: {student?.rollNumber}</p>
                     </div>
                     <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                       <Users className="w-5 h-5 text-blue-600" />
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <button
                       onClick={() => handleAttendanceChange(student.id, 'present')}
-                      className={`flex-1 flex items-center justify-center space-x-1 py-2 px-3 rounded-md transition-colors duration-200 ${
-                        attendanceData[student.id] === 'present'
-                          ? 'bg-green-500 text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-green-100 hover:text-green-700'
-                      }`}
+                      className={`flex items-center justify-center space-x-1 py-3 px-3 rounded-md transition-colors duration-200 ${attendanceData[student.id] === 'present'
+                        ? 'bg-green-500 text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-green-100 hover:text-green-700'
+                        }`}
                     >
                       <Check className="w-4 h-4" />
-                      <span>Present</span>
+                      {/* <span>Present</span> */}
                     </button>
                     <button
                       onClick={() => handleAttendanceChange(student.id, 'absent')}
-                      className={`flex-1 flex items-center justify-center space-x-1 py-2 px-3 rounded-md transition-colors duration-200 ${
-                        attendanceData[student.id] === 'absent'
-                          ? 'bg-red-500 text-white'
-                          : 'bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-700'
-                      }`}
+                      className={`flex items-center justify-center space-x-1 py-3 px-3 rounded-md transition-colors duration-200 ${attendanceData[student.id] === 'absent'
+                        ? 'bg-red-500 text-white'
+                        : 'bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-700'
+                        }`}
                     >
                       <X className="w-4 h-4" />
-                      <span>Absent</span>
+                      {/* <span>Absent</span> */}
                     </button>
                   </div>
                 </div>
