@@ -38,7 +38,7 @@ const navigationItems: NavigationItem[] = [
   },
   {
     id: 'teachers',
-    label: 'Teachers Management',
+    label: 'Staffs Management',
     icon: 'UserCheck',
     roles: ['system_admin', 'management']
   },

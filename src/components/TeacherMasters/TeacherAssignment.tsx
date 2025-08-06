@@ -17,7 +17,8 @@ import {
     ChevronDown,
     ChevronRight,
     AlertCircle,
-    CheckCircle
+    CheckCircle,
+    Edit
 } from 'lucide-react';
 
 interface Teacher {
@@ -676,6 +677,21 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
 
     const selectedGrade = grades.find(g => g.id === formData.gradeId);
 
+    const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const TIME_SLOTS = [
+        { id: '1', startTime: '08:00', endTime: '08:45', type: 'period', periodNumber: 1 },
+        { id: '2', startTime: '08:45', endTime: '09:30', type: 'period', periodNumber: 2 },
+        { id: '3', startTime: '09:30', endTime: '09:45', type: 'break', periodNumber: undefined },
+        { id: '4', startTime: '09:45', endTime: '10:30', type: 'period', periodNumber: 3 },
+        { id: '5', startTime: '10:30', endTime: '11:15', type: 'period', periodNumber: 4 },
+        { id: '6', startTime: '11:15', endTime: '12:00', type: 'period', periodNumber: 5 },
+        { id: '7', startTime: '12:00', endTime: '12:30', type: 'lunch', periodNumber: undefined },
+        { id: '8', startTime: '12:30', endTime: '13:15', type: 'period', periodNumber: 6 },
+        { id: '9', startTime: '13:15', endTime: '14:00', type: 'period', periodNumber: 7 },
+    ];
+
+    //   const canEdit = hasRole(['system_admin', 'management']);
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
@@ -707,7 +723,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                 <option value="">Select Teacher</option>
                                 {teachers.map(teacher => (
                                     <option key={teacher.id} value={teacher.id}>
-                                        {teacher.name} - {teacher.department}
+                                        {teacher.name} - {teacher.employeeId}
                                     </option>
                                 ))}
                             </select>
@@ -717,7 +733,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                         </div>
 
                         {/* Subject Selection */}
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Subject *
                             </label>
@@ -737,10 +753,10 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                             {errors.subjectId && (
                                 <p className="mt-1 text-sm text-red-600">{errors.subjectId}</p>
                             )}
-                        </div>
+                        </div> */}
 
                         {/* Grade Selection */}
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Grade *
                             </label>
@@ -760,10 +776,10 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                             {errors.gradeId && (
                                 <p className="mt-1 text-sm text-red-600">{errors.gradeId}</p>
                             )}
-                        </div>
+                        </div> */}
 
                         {/* Section Selection */}
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Section *
                             </label>
@@ -784,7 +800,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                             {errors.section && (
                                 <p className="mt-1 text-sm text-red-600">{errors.section}</p>
                             )}
-                        </div>
+                        </div> */}
 
                         {/* Academic Year */}
                         <div>
@@ -801,7 +817,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                         </div>
 
                         {/* Semester */}
-                        <div>
+                        {/* <div>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                                 Semester
                             </label>
@@ -814,7 +830,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                 <option value="Spring">Spring</option>
                                 <option value="Summer">Summer</option>
                             </select>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Schedule Section */}
@@ -831,7 +847,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                             </button>
                         </div>
 
-                        <div className="space-y-4">
+                        {/* <div className="space-y-4">
                             {formData.schedule.map((slot, index) => (
                                 <div key={index} className="grid grid-cols-1 md:grid-cols-5 gap-4 p-4 border border-gray-200 rounded-lg">
                                     <div>
@@ -867,7 +883,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                         />
                                     </div>
-                                    <div>
+                                    {/* <div>
                                         <label className="block text-sm font-medium text-gray-700 mb-1">Room</label>
                                         <input
                                             type="text"
@@ -876,7 +892,7 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                                             placeholder="Room 101"
                                         />
-                                    </div>
+                                    </div> 
                                     <div className="flex items-end">
                                         <button
                                             type="button"
@@ -890,6 +906,63 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                     </div>
                                 </div>
                             ))}
+                        </div> */}
+                        <div className="overflow-x-auto">
+                            <table className="w-full">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Time
+                                        </th>
+                                        {DAYS.map(day => (
+                                            <th key={day} className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                {day}
+                                            </th>
+                                        ))}
+                                    </tr>
+                                </thead>
+                                <tbody className="bg-white divide-y divide-gray-200">
+                                    {TIME_SLOTS.map(timeSlot => (
+                                        <tr key={timeSlot.id}>
+                                            <td className="px-4 py-3 whitespace-nowrap">
+                                                <div className="text-sm font-medium text-gray-900">
+                                                    {timeSlot.startTime} - {timeSlot.endTime}
+                                                </div>
+                                                <div className="text-xs text-gray-500">
+                                                    {timeSlot.type === 'period' && `Period ${timeSlot.periodNumber}`}
+                                                    {timeSlot.type === 'break' && 'Break'}
+                                                    {timeSlot.type === 'lunch' && 'Lunch'}
+                                                </div>
+                                            </td>
+                                            {DAYS.map((day, dayIndex) => {
+                                                // const entry = getTimeTableForSection(selectedSection, dayIndex, timeSlot.id);
+
+                                                if (timeSlot.type !== 'period') {
+                                                    return (
+                                                        <td key={day} className="px-4 py-3 text-center">
+                                                            <div className="text-sm text-gray-500 bg-gray-100 rounded px-2 py-1">
+                                                                {timeSlot.type === 'break' ? 'Break' : 'Lunch'}
+                                                            </div>
+                                                        </td>
+                                                    );
+                                                }
+
+                                                return (
+                                                    <td key={day} className="px-4 py-3 text-center">
+                                                        {(
+                                                            <div className="bg-blue-50 border border-blue-200 rounded px-2 py-1">
+                                                                <div className="cursor-pointer text-sm font-medium text-blue-300 flex items-center justify-center">
+                                                                    <Plus className='self-center'/>
+                                                                </div>                                                                
+                                                            </div>
+                                                        )}
+                                                    </td>
+                                                );
+                                            })}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 

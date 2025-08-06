@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Save, School, Clock, Calendar, BookOpen, GraduationCap } from 'lucide-react';
 import { useSchool } from '../../contexts/SchoolContext';
 import { SchoolSettings } from '../../types';
+import RolePermissionManager from '../RolePermissionManager';
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -61,6 +62,12 @@ export const Settings: React.FC = () => {
           </div>
 
           <div className="space-y-4">
+
+            <div className='flex flex-row gap-4 items-center'>
+              <img src="/school.jpg" className='rounded-full h-20 w-20' alt="Avatar"></img>
+              <input type="file" />
+            </div>
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">School Name</label>
               <input
@@ -183,6 +190,17 @@ export const Settings: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Choose Attendance Interval</label>
+                <select
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="male">Once in a day</option>
+                  <option value="female">Twice in a day</option>
+                  <option value="other">Every period</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -243,6 +261,7 @@ export const Settings: React.FC = () => {
             </div>
           </div>
         </div>
+        <RolePermissionManager />
       </div>
     </div>
   );

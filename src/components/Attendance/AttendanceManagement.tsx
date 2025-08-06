@@ -80,7 +80,7 @@ export const AttendanceManagement: React.FC = () => {
                 setAttendanceData({});
               }}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
+            > 
               <option value="">Select Grade</option>
               {grades.map(grade => (
                 <option key={grade.id} value={grade.id}>{grade.name}</option>
@@ -98,7 +98,7 @@ export const AttendanceManagement: React.FC = () => {
               }}
               disabled={!selectedGrade}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
-            >
+            > 
               <option value="">Select Section</option>
               {selectedGradeData?.sections.map(section => (
                 <option key={section.id} value={section.id}>

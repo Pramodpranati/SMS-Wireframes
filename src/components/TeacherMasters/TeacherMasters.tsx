@@ -1,26 +1,24 @@
-import React, { useState, useEffect } from 'react';
 import {
-  Plus,
-  Search,
-  Filter,
+  Briefcase,
+  Building,
   Edit2,
-  Trash2,
   Eye,
+  GraduationCap,
+  Home,
   Mail,
   Phone,
-  MapPin,
-  Calendar,
-  GraduationCap,
-  Award,
-  Users,
-  Building,
-  X,
+  Plus,
   Save,
+  Search,
+  Shield,
+  Upload,
+  Trash2,
+  Presentation,
   User,
-  Home,
-  Briefcase,
-  Shield
+  Users,
+  X
 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 
 interface Teacher {
   id: string;
@@ -68,6 +66,7 @@ interface Teacher {
 }
 
 const DEPARTMENTS = ['Mathematics', 'English', 'Science', 'History', 'Arts', 'Physical Education', 'Music', 'Computer Science'];
+const Roles = ['Teacher', 'Driver', 'Principal', 'Vice Principal', 'Other'];
 const SUBJECTS = ['Mathematics', 'English Literature', 'Physics', 'Chemistry', 'Biology', 'History', 'Geography', 'Art', 'Music', 'Physical Education', 'Computer Science', 'Economics'];
 const ADMIN_ROLES = ['Department Head', 'Vice Principal', 'Principal', 'Coordinator', 'Counselor', 'Librarian'];
 const PERMISSIONS = ['View Students', 'Edit Grades', 'Manage Attendance', 'Generate Reports', 'Manage Schedules'];
@@ -82,6 +81,7 @@ const TeacherManagement: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('all');
   const [filterStatus, setFilterStatus] = useState('all');
+  const [qualification, setQualification] = useState<number>(1)
 
   // Initialize with sample data
   useEffect(() => {
@@ -246,8 +246,8 @@ const TeacherManagement: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Teachers Management</h1>
-          <p className="text-gray-600">Manage teacher profiles, roles, and contact information</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Staffs Management</h1>
+          <p className="text-gray-600">Manage staffs profiles, roles, and contact information</p>
         </div>
 
         {/* Controls */}
@@ -296,7 +296,7 @@ const TeacherManagement: React.FC = () => {
               className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Plus className="w-5 h-5" />
-              Add Teacher
+              Add Staff
             </button>
           </div>
         </div>
@@ -382,8 +382,8 @@ const TeacherCard: React.FC<{
           <div className="flex items-center space-x-1">
             <span
               className={`px-2 py-1 text-xs font-medium rounded-full ${teacher.roles.isActive
-                  ? 'bg-green-100 text-green-800'
-                  : 'bg-red-100 text-red-800'
+                ? 'bg-green-100 text-green-800'
+                : 'bg-red-100 text-red-800'
                 }`}
             >
               {teacher.roles.isActive ? 'Active' : 'Inactive'}
@@ -549,12 +549,15 @@ const TeacherModal: React.FC<{
     });
   };
 
+  const [qualificationLength, setqualificationLength] = useState<number>(1)
+  const [certificateLength, setCertificateLength] = useState<number>(1)
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
         <div className="flex items-center justify-between p-6 border-b border-gray-200">
           <h2 className="text-xl font-semibold text-gray-900">
-            {mode === 'add' ? 'Add New Teacher' : 'Edit Teacher'}
+            {mode === 'add' ? 'Add New Staff' : 'Edit Teacher'}
           </h2>
           <button
             onClick={onClose}
@@ -564,22 +567,25 @@ const TeacherModal: React.FC<{
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="flex flex-col h-full">
+        <form onSubmit={handleSubmit} className="flex flex-col h-96 overflow-scroll">
           {/* Tabs */}
           <div className="flex border-b border-gray-200">
             {[
               { id: 'personal', label: 'Personal Info', icon: User },
               { id: 'contact', label: 'Contact Info', icon: Home },
+              { id: 'qualification', label: 'Qualification', icon: GraduationCap },
               { id: 'professional', label: 'Professional', icon: Briefcase },
-              { id: 'roles', label: 'Roles & Permissions', icon: Shield }
+              { id: 'experiences', label: 'Experiences', icon: Presentation },
+              { id: 'attachments', label: 'Attachments', icon: Upload },
+              // { id: 'assignments', label: 'Roles', icon: Shield }
             ].map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
                 type="button"
                 onClick={() => setActiveTab(id)}
                 className={`flex items-center gap-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${activeTab === id
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700'
                   }`}
               >
                 <Icon className="w-4 h-4" />
@@ -588,9 +594,14 @@ const TeacherModal: React.FC<{
             ))}
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6">
+          <div className="flex-1 p-6">
+
             {activeTab === 'personal' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className='flex flex-row gap-4 items-center'>
+                  <img src="/img_avatar.png" className='rounded-full h-20 w-20' alt="Avatar"></img>
+                  <input type="file" />
+                </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     First Name *
@@ -691,8 +702,8 @@ const TeacherModal: React.FC<{
             )}
 
             {activeTab === 'contact' && (
-              <div className="space-y-8">
-                <div>
+              <div className="space-y-8 overflow-auto">
+                <div className=''>
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Address Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="md:col-span-2">
@@ -771,18 +782,18 @@ const TeacherModal: React.FC<{
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Country
                       </label>
-                      <input
-                        type="text"
-                        value={formData.contactInfo.address.country}
-                        onChange={(e) => setFormData({
-                          ...formData,
-                          contactInfo: {
-                            ...formData.contactInfo,
-                            address: { ...formData.contactInfo.address, country: e.target.value }
-                          }
-                        })}
+                      <select
+                        value={formData.personalInfo.gender}
+                        // onChange={(e) => setFormData({
+                        //   ...formData,
+                        //   personalInfo: { ...formData.personalInfo, gender: e.target.value as 'male' | 'female' | 'other' }
+                        // })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                      />
+                      >
+                        <option value="male">India</option>
+                        <option value="female">USA</option>
+                        <option value="other">Russia</option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -870,7 +881,27 @@ const TeacherModal: React.FC<{
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Employee ID *
+                    Role *
+                  </label>
+                  <select
+                    required
+                    value={formData.professionalInfo.department}
+                    onChange={(e) => setFormData({
+                      ...formData,
+                      professionalInfo: { ...formData.professionalInfo, department: e.target.value }
+                    })}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Select</option>
+                    {Roles.map(dept => (
+                      <option key={dept} value={dept}>{dept}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Employee Code *
                   </label>
                   <input
                     type="text"
@@ -904,7 +935,7 @@ const TeacherModal: React.FC<{
                   </select>
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Position
                   </label>
@@ -917,7 +948,7 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
-                </div>
+                </div> */}
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -934,7 +965,7 @@ const TeacherModal: React.FC<{
                   />
                 </div>
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Qualification
                   </label>
@@ -947,9 +978,9 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Experience (years)
                   </label>
@@ -963,9 +994,9 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Salary ($)
                   </label>
@@ -979,14 +1010,14 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
-                </div>
+                </div> */}
               </div>
             )}
 
-            {activeTab === 'roles' && (
+            {activeTab === 'assignments' && (
               <div className="space-y-8">
                 <div>
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Subject Assignments</h3>
+                  <h3 className="text-lg font-medium text-gray-900 mb-4">Roles Assignments</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {SUBJECTS.map(subject => (
                       <label key={subject} className="flex items-center space-x-2 cursor-pointer">
@@ -1002,7 +1033,7 @@ const TeacherModal: React.FC<{
                   </div>
                 </div>
 
-                <div>
+                {/* <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Administrative Roles</h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                     {ADMIN_ROLES.map(role => (
@@ -1017,9 +1048,9 @@ const TeacherModal: React.FC<{
                       </label>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Permissions</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {PERMISSIONS.map(permission => (
@@ -1034,9 +1065,9 @@ const TeacherModal: React.FC<{
                       </label>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
-                <div>
+                {/* <div>
                   <label className="flex items-center space-x-2 cursor-pointer">
                     <input
                       type="checkbox"
@@ -1049,6 +1080,233 @@ const TeacherModal: React.FC<{
                     />
                     <span className="text-sm font-medium text-gray-700">Active Teacher</span>
                   </label>
+                </div> */}
+              </div>
+            )}
+
+            {activeTab === 'qualification' && (
+              <div className="space-y-8">
+                <div>
+                  <div className='flex flex-row justify-between'>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Education Qualification</h3>
+                    <button
+                      type="button"
+                      onClick={() => setqualificationLength(qualificationLength + 1)}
+                      className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                      Add new
+                    </button>
+                  </div>
+                  <div className='mt-3'>
+                    {Array.from({ length: qualificationLength }).map((_, i) => (
+                      <div key={i} className="border p-3 rounded-md mb-4">
+                        <div className='flex flex-row gap-3'>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Qualification
+                            </label>
+                            <select
+                              className="px-4 w-full py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            >
+                              <option value="all">Select Qualification</option>
+                              <option value="ba_english">BA - English</option>
+                              <option value="ba_economics">BA - Economics</option>
+                              <option value="ba_history">BA - History</option>
+                              <option value="ba_political_science">BA - Political Science</option>
+                              <option value="bba_general">BBA - General</option>
+                              <option value="bba_hr">BBA - Human Resource Management</option>
+                              <option value="bba_finance">BBA - Finance</option>
+                              <option value="bba_marketing">BBA - Marketing</option>
+                              <option value="bcom_general">B.Com - General</option>
+                              <option value="bcom_accounting">B.Com - Accounting & Finance</option>
+                              <option value="bcom_cs">B.Com - Corporate Secretaryship</option>
+                              <option value="bsc_cs">B.Sc - Computer Science</option>
+                              <option value="bsc_math">B.Sc - Mathematics</option>
+                              <option value="bsc_physics">B.Sc - Physics</option>
+                              <option value="bsc_chemistry">B.Sc - Chemistry</option>
+                              <option value="bsc_biology">B.Sc - Biology</option>
+                              <option value="bca">BCA - Computer Applications</option>
+                              <option value="bed">B.Ed - Education</option>
+                              <option value="ma_english">MA - English</option>
+                              <option value="ma_economics">MA - Economics</option>
+                              <option value="ma_history">MA - History</option>
+                              <option value="ma_psychology">MA - Psychology</option>
+                              <option value="mba_general">MBA - General</option>
+                              <option value="mba_hr">MBA - Human Resource Management</option>
+                              <option value="mba_finance">MBA - Finance</option>
+                              <option value="mba_marketing">MBA - Marketing</option>
+                              <option value="mba_it">MBA - Information Technology</option>
+                              <option value="mcom_general">M.Com - General</option>
+                              <option value="mcom_af">M.Com - Accounting & Finance</option>
+                              <option value="msc_cs">M.Sc - Computer Science</option>
+                              <option value="msc_math">M.Sc - Mathematics</option>
+                              <option value="msc_physics">M.Sc - Physics</option>
+                              <option value="msc_chemistry">M.Sc - Chemistry</option>
+                              <option value="mca">MCA - Computer Applications</option>
+                              <option value="med">M.Ed - Education</option>
+                              <option value="phd">Ph.D</option>
+                              <option value="diploma_it">Diploma - Information Technology</option>
+                              <option value="diploma_mech">Diploma - Mechanical Engineering</option>
+                              <option value="diploma_civil">Diploma - Civil Engineering</option>
+                              <option value="diploma_eee">Diploma - Electrical & Electronics</option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                          {/* <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Start Date
+                            </label>
+                            <input
+                              type="date"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div> */}
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Passed Out Year
+                            </label>
+                            <input
+                              type="text"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Attach
+                            </label>
+                            <input
+                              type="file"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'experiences' && (
+              <div className="space-y-8">
+                <div>
+                  <div className='flex flex-row justify-between'>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Experiences</h3>
+                    <button
+                      type="button"
+                      onClick={() => setqualificationLength(qualificationLength + 1)}
+                      className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                      Add new
+                    </button>
+                  </div>
+                  <div className='mt-3'>
+                    {Array.from({ length: qualificationLength }).map((_, i) => (
+                      <div key={i} className="border p-3 rounded-md mb-4">
+                        <div className='flex flex-row gap-3'>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Organization Name
+                            </label>
+                            <input
+                              type="text"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Role
+                            </label>
+                            <input
+                              type="text"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Start Date
+                            </label>
+                            <input
+                              type="date"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              End Date
+                            </label>
+                            <input
+                              type="date"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div><div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Attach
+                            </label>
+                            <input
+                              type="file"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === 'attachments' && (
+              <div className="space-y-8">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">Uploaded Attachments</h3>
+                <div>
+                  <h4>1. UG Certificate</h4>
+                  <h4>2. PG Certificate</h4>
+                  <h4>3. Professional Certificate</h4>
+                  <h4>4. Experience Letter</h4>
+                </div>
+
+                <div>
+                  <div className='flex flex-row justify-between'>
+                    <h3 className="text-lg font-medium text-gray-900 mb-4">Certificate Attachments</h3>
+                    <button
+                      type="button"
+                      onClick={() => setCertificateLength(certificateLength + 1)}
+                      className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                      <Plus className="w-4 h-4" />
+                      Add new
+                    </button>
+                  </div>
+                  <div className='mt-3'>
+                    {Array.from({ length: certificateLength }).map((_, i) => (
+                      <div key={i} className="border p-3 rounded-md mb-4">
+                        <div className='flex flex-row gap-3'>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Name
+                            </label>
+                            <input
+                              type="text"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                          <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Attach
+                            </label>
+                            <input
+                              type="file"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -1067,7 +1325,7 @@ const TeacherModal: React.FC<{
               className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Save className="w-4 h-4" />
-              {mode === 'add' ? 'Add Teacher' : 'Update Teacher'}
+              {mode === 'add' ? 'Add Staff' : 'Update Staff'}
             </button>
           </div>
         </form>
@@ -1219,8 +1477,8 @@ const TeacherViewModal: React.FC<{
                 <label className="block text-sm font-medium text-gray-500 mb-2">Status</label>
                 <span
                   className={`px-3 py-1 text-sm font-medium rounded-full ${teacher.roles.isActive
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
+                    ? 'bg-green-100 text-green-800'
+                    : 'bg-red-100 text-red-800'
                     }`}
                 >
                   {teacher.roles.isActive ? 'Active' : 'Inactive'}

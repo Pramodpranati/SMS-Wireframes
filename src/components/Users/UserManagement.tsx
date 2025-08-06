@@ -7,7 +7,7 @@ const mockUsers: User[] = [
   { id: '2', name: 'Sarah Principal', email: 'principal@school.com', role: 'management' },
   { id: '3', name: 'Mike Teacher', email: 'mike@school.com', role: 'teacher' },
   { id: '4', name: 'Alice Student', email: 'alice@school.com', role: 'student' },
-  { id: '5', name: 'Bob Parent', email: 'bob@school.com', role: 'parent' }
+  { id: '5', name: 'Bob Parent', email: 'bob@school.com', role: 'student' }
 ];
 
 export const UserManagement: React.FC = () => {
@@ -18,7 +18,7 @@ export const UserManagement: React.FC = () => {
 
   const filteredUsers = users.filter(user => {
     const matchesSearch = user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         user.email.toLowerCase().includes(searchTerm.toLowerCase());
+      user.email.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesRole = roleFilter === 'all' || user.role === roleFilter;
     return matchesSearch && matchesRole;
   });
