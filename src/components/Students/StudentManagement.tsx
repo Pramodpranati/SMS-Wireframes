@@ -553,6 +553,25 @@ const StudentManagement: React.FC = () => {
                     </div>
                 </div>
 
+                <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold mb-4">Extra Curricular Activity</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1"></label>
+                            <select
+                                value={formData.gender}
+                                onChange={(e) => setFormData({ ...formData, gender: e.target.value as any })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                            >
+                                <option value="male">Cricket</option>
+                                <option value="female">Dance</option>
+                                <option value="other">Chess</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="flex justify-end space-x-2 pt-6">
                     <button
                         type="button"
@@ -621,6 +640,7 @@ const StudentManagement: React.FC = () => {
                         )}
                     </div>
                 </div>
+
 
                 <div className="bg-white border rounded-lg p-6">
                     <h4 className="text-lg font-semibold mb-4 flex items-center gap-2">

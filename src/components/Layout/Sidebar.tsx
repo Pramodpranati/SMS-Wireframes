@@ -31,6 +31,12 @@ const navigationItems: NavigationItem[] = [
     roles: ['system_admin', 'management']
   },
   {
+    id: 'admissiondashboard',
+    label: 'Admission Management',
+    icon: 'GraduationCap',
+    roles: ['system_admin', 'management']
+  },
+  {
     id: 'students',
     label: 'Students Management',
     icon: 'GraduationCap',

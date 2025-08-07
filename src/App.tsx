@@ -13,6 +13,7 @@ import { Settings } from './components/Settings/Settings';
 import TeacherMasters from './components/TeacherMasters/TeacherMasters';
 import StudentManagement from './components/Students/StudentManagement';
 import TeacherAssignment from './components/TeacherMasters/TeacherAssignment';
+import AdmissionDashboard from './components/Admission/AdmissionDashboard';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -39,6 +40,8 @@ function App() {
         return <StudentManagement />;
       case 'teachersassignment':
         return <TeacherAssignment />;
+      case 'admissiondashboard':
+        return <AdmissionDashboard />;
       default:
         return <Dashboard />;
     }
