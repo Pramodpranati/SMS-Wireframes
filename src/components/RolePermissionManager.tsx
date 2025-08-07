@@ -65,7 +65,7 @@ export default function RolePermissionManager() {
             <div className="flex flex-row justify-between items-center">
                 <div className="flex flex-row items-center space-x-3 mb-6">
                     <UserCog className="w-6 h-6 text-blue-600" />
-                    <h2 className="text-lg font-semibold text-gray-800">Role Permission Manager</h2>
+                    <h2 className="text-lg font-semibold text-gray-800">Designation Permission Manager</h2>
                 </div>
                 <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
                     <Plus className="w-4 h-4" />

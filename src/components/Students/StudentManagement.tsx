@@ -18,7 +18,8 @@ import {
     Users,
     AlertCircle,
     Check,
-    X
+    X,
+    Upload
 } from 'lucide-react';
 import { Student } from '../../types';
 
@@ -264,6 +265,10 @@ const StudentManagement: React.FC = () => {
         return (
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className='flex flex-row gap-4 items-center'>
+                        <img src="/img_avatar.png" className='rounded-full h-20 w-20' alt="Avatar" />
+                        <button className='px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
+                    </div>
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
                         <input
