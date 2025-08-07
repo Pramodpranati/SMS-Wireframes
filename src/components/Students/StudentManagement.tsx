@@ -368,6 +368,51 @@ const StudentManagement: React.FC = () => {
                 </div>
 
                 <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold mb-4">Parent Information</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Parent Name *</label>
+                            <input
+                                type="text"
+                                value={formData.guardianName}
+                                onChange={(e) => setFormData({ ...formData, guardianName: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Parent Phone *</label>
+                            <input
+                                type="tel"
+                                value={formData.guardianPhone}
+                                onChange={(e) => setFormData({ ...formData, guardianPhone: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Parent Email</label>
+                            <input
+                                type="email"
+                                value={formData.guardianEmail}
+                                onChange={(e) => setFormData({ ...formData, guardianEmail: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Emergency Contact *</label>
+                            <input
+                                type="tel"
+                                value={formData.emergencyContact}
+                                onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border-t pt-6">
                     <h3 className="text-lg font-semibold mb-4">Guardian Information</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>

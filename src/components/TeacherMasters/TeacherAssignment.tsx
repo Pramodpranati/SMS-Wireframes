@@ -950,11 +950,47 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                                                 return (
                                                     <td key={day} className="px-4 py-3 text-center">
                                                         {(
-                                                            <div className="bg-blue-50 border border-blue-200 rounded px-2 py-1">
-                                                                <div className="cursor-pointer text-sm font-medium text-blue-300 flex items-center justify-center">
-                                                                    <Plus className='self-center'/>
-                                                                </div>                                                                
-                                                            </div>
+                                                            <>
+                                                                <div className="bg-blue-50 border border-blue-200 rounded px-2 py-1">
+                                                                    <div className="cursor-pointer text-sm font-medium text-blue-300 flex items-center justify-center">
+                                                                        <Plus className="self-center" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white border border-gray-300 shadow-lg rounded p-4 z-10">
+                                                                    <div className="mb-2">
+                                                                        <label className="block text-sm font-medium text-gray-700">Grade</label>
+                                                                        <select className="mt-1 block w-full border border-gray-300 rounded px-2 py-1 text-sm">
+                                                                            <option>Select Grade</option>
+                                                                            <option>Grade 1</option>
+                                                                            <option>Grade 2</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div className="mb-2">
+                                                                        <label className="block text-sm font-medium text-gray-700">Class</label>
+                                                                        <select className="mt-1 block w-full border border-gray-300 rounded px-2 py-1 text-sm">
+                                                                            <option>Select Class</option>
+                                                                            <option>Class A</option>
+                                                                            <option>Class B</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div className="mb-3">
+                                                                        <label className="block text-sm font-medium text-gray-700">Subject</label>
+                                                                        <select className="mt-1 block w-full border border-gray-300 rounded px-2 py-1 text-sm">
+                                                                            <option>Select Subject</option>
+                                                                            <option>Math</option>
+                                                                            <option>Science</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div className="flex justify-end space-x-2">
+                                                                        <button className="bg-gray-200 px-3 py-1 rounded text-sm">Cancel</button>
+                                                                        <button className="bg-blue-500 text-white px-3 py-1 rounded text-sm">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </>
                                                         )}
                                                     </td>
                                                 );
