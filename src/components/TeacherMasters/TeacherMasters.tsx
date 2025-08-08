@@ -708,7 +708,24 @@ const TeacherModal: React.FC<{
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="md:col-span-2">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Street Address
+                        House no/building name
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.contactInfo.address.street}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          contactInfo: {
+                            ...formData.contactInfo,
+                            address: { ...formData.contactInfo.address, street: e.target.value }
+                          }
+                        })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Street
                       </label>
                       <input
                         type="text"
@@ -727,6 +744,24 @@ const TeacherModal: React.FC<{
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         City
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.contactInfo.address.city}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          contactInfo: {
+                            ...formData.contactInfo,
+                            address: { ...formData.contactInfo.address, city: e.target.value }
+                          }
+                        })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        District
                       </label>
                       <input
                         type="text"
@@ -881,7 +916,7 @@ const TeacherModal: React.FC<{
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Role *
+                    Designation *
                   </label>
                   <select
                     required
@@ -1101,7 +1136,7 @@ const TeacherModal: React.FC<{
                   <div className='mt-3'>
                     {Array.from({ length: qualificationLength }).map((_, i) => (
                       <div key={i} className="border p-3 rounded-md mb-4">
-                        <div className='flex flex-row gap-3'>
+                        <div className='flex flex-row gap-3 justify-center items-center'>
                           <div className='flex-1'>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                               Qualification
@@ -1180,6 +1215,9 @@ const TeacherModal: React.FC<{
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             />
                           </div>
+                          <div className=''>
+                            <button className='bg-red-300 p-2 rounded-lg text-red-600'><Trash2 /></button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -1205,7 +1243,7 @@ const TeacherModal: React.FC<{
                   <div className='mt-3'>
                     {Array.from({ length: qualificationLength }).map((_, i) => (
                       <div key={i} className="border p-3 rounded-md mb-4">
-                        <div className='flex flex-row gap-3'>
+                        <div className='flex flex-row gap-3 items-center justify-center'>
                           <div className='flex-1'>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                               Organization Name
@@ -1217,7 +1255,7 @@ const TeacherModal: React.FC<{
                           </div>
                           <div className='flex-1'>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
-                              Role
+                              Designation
                             </label>
                             <input
                               type="text"
@@ -1249,6 +1287,9 @@ const TeacherModal: React.FC<{
                               type="file"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             />
+                          </div>
+                          <div className=''>
+                            <button className='bg-red-300 p-2 rounded-lg text-red-600'><Trash2 /></button>
                           </div>
 
                         </div>
@@ -1284,7 +1325,7 @@ const TeacherModal: React.FC<{
                   <div className='mt-3'>
                     {Array.from({ length: certificateLength }).map((_, i) => (
                       <div key={i} className="border p-3 rounded-md mb-4">
-                        <div className='flex flex-row gap-3'>
+                        <div className='flex flex-row gap-3 justify-center items-center'>
                           <div className='flex-1'>
                             <label className="block text-sm font-medium text-gray-700 mb-2">
                               Name
@@ -1302,6 +1343,9 @@ const TeacherModal: React.FC<{
                               type="file"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             />
+                          </div>
+                          <div className=''>
+                            <button className='bg-red-300 p-2 rounded-lg text-red-600'><Trash2 /></button>
                           </div>
                         </div>
                       </div>

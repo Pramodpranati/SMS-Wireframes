@@ -110,7 +110,7 @@ export default function ApprovalWorkflow() {
     {
       id: '2',
       applicationNumber: 'ADM2024002',
-      studentName: 'Priya Sharma',
+      studentName: 'Ajith Kumar',
       className: 'Class 6',
       submissionDate: '2024-01-18',
       currentStep: 1,

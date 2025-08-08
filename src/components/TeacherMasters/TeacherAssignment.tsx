@@ -837,14 +837,14 @@ const AssignmentModal: React.FC<AssignmentModalProps> = ({
                     <div>
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-medium text-gray-900">Class Schedule</h3>
-                            <button
+                            {/* <button
                                 type="button"
                                 onClick={addScheduleSlot}
                                 className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
                             >
                                 <Plus className="w-4 h-4" />
                                 Add Time Slot
-                            </button>
+                            </button> */}
                         </div>
 
                         {/* <div className="space-y-4">

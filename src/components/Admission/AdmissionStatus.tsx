@@ -47,7 +47,7 @@ export default function AdmissionStatus() {
     {
       id: '2',
       applicationNumber: 'ADM2024002',
-      studentName: 'Priya Sharma',
+      studentName: 'Ajith kumar',
       className: 'Class 6',
       academicYear: '2024-25',
       submissionDate: '2024-01-18',
