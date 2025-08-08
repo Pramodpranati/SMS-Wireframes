@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, FileText, User, Calendar, MapPin, Phone, Mail, GraduationCap, CheckCircle, Clock, XCircle } from 'lucide-react';
+import { Upload, FileText, User, Calendar, MapPin, Phone, Mail, GraduationCap, CheckCircle, Clock, XCircle, Plus, Trash2 } from 'lucide-react';
 
 interface PersonalInfo {
   firstName: string;
@@ -155,7 +155,8 @@ export default function AdmissionForm() {
     { number: 3, title: 'Parent/Guardian Info', icon: User },
     { number: 4, title: 'Community Certificate', icon: FileText },
     { number: 5, title: 'Birth Certificate', icon: Calendar },
-    { number: 6, title: 'Academic Details', icon: GraduationCap }
+    { number: 6, title: 'Academic Details', icon: GraduationCap },
+    { number: 7, title: 'Academic Details', icon: GraduationCap }
   ];
 
   const listofStates = [
@@ -196,7 +197,15 @@ export default function AdmissionForm() {
     "Lakshadweep",
     "Puducherry"
   ]
-
+  const religionOptions = [
+    "Select Religion",
+    "Hindu",
+    "Muslim",
+    "Christian",
+    "Other",
+    "Prefer not to say"
+  ];
+  const [previoushistoryLength, setprevioushistoryLength] = useState<number>(1)
 
   const handleInputChange = (section: keyof AdmissionFormData, field: string, value: any) => {
     setFormData(prev => ({
@@ -233,7 +242,7 @@ export default function AdmissionForm() {
   const handleSubmit = () => {
     console.log('Form submitted:', formData);
     // Here you would typically send the data to your backend
-    alert('Admission form submitted successfully! You will receive a confirmation email shortly.');
+    alert("Admission form submitted successfully! You will receive a confirmation email shortly. Your Admission Form ID is: AP2501. You can use this ID to track the status of your application.");
   };
 
   const renderStepIndicator = () => (
@@ -276,7 +285,7 @@ export default function AdmissionForm() {
   const renderPersonalInfo = () => (
     <div className="space-y-6">
       <div className='flex flex-row gap-4 items-center'>
-        <img src="/img_avatar.png" className='rounded-full h-20 w-20' alt="Avatar" />
+        <img src="/img_avatar.png" className='rounded-none h-20 w-20' alt="Avatar" />
         <button className='px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -352,13 +361,20 @@ export default function AdmissionForm() {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Religion</label>
-          <input
+          {/* <input
             type="text"
             value={formData.personalInfo.religion}
             onChange={(e) => handleInputChange('personalInfo', 'religion', e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             placeholder="Enter religion"
-          />
+          /> */}
+          <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+            {
+              religionOptions.map((data, index) => (
+                <option key={index} value={data}>{data}</option>
+              ))
+            }
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Category *</label>
@@ -469,6 +485,16 @@ export default function AdmissionForm() {
         </div>
         <div className='flex-1'>
           <label className="block text-sm font-medium text-gray-700 mb-2">Street *</label>
+          <input
+            type="tel"
+            value={formData.contactInfo.alternatePhone}
+            onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            placeholder="Enter Street"
+          />
+        </div>
+        <div className='flex-1'>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Locality *</label>
           <input
             type="tel"
             value={formData.contactInfo.alternatePhone}
@@ -925,7 +951,7 @@ export default function AdmissionForm() {
         <p className="text-sm text-purple-700">Please provide your previous academic details</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Previous School Name</label>
           <input
@@ -937,14 +963,52 @@ export default function AdmissionForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Previous Class</label>
-          <input
-            type="text"
-            value={formData.academicInfo.previousClass}
-            onChange={(e) => handleInputChange('academicInfo', 'previousClass', e.target.value)}
+          <label className="block text-sm font-medium text-gray-700 mb-2">From Grade</label>
+          <select
+            required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter previous class"
-          />
+          >
+            <option value="">Select Class</option>
+            <option value="nursery">Nursery</option>
+            <option value="lkg">LKG</option>
+            <option value="ukg">UKG</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">To Grade</label>
+          <select
+            required
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+          >
+            <option value="">Select Class</option>
+            <option value="nursery">Nursery</option>
+            <option value="lkg">LKG</option>
+            <option value="ukg">UKG</option>
+            <option value="1">Class 1</option>
+            <option value="2">Class 2</option>
+            <option value="3">Class 3</option>
+            <option value="4">Class 4</option>
+            <option value="5">Class 5</option>
+            <option value="6">Class 6</option>
+            <option value="7">Class 7</option>
+            <option value="8">Class 8</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+          </select>
         </div>
       </div>
 
@@ -1074,8 +1138,172 @@ export default function AdmissionForm() {
           )}
         </div>
       </div>
+      <div className="grid grid-row-2  space-y-8">
+        <div>
+          <div className='flex flex-row justify-between'>
+            <h3 className="text-lg font-medium text-gray-900 mb-4">Education History</h3>
+            <button
+              type="button"
+              onClick={() => setprevioushistoryLength(previoushistoryLength + 1)}
+              className="flex items-center gap-2 px-6 py-2   bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          {Array.from({ length: previoushistoryLength }).map((_, i) => (
+            <div key={i} className="border p-3 rounded-md mb-4">
+              <div className='flex flex-row py-3 gap-5'>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    School Name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+                {/* <div className='flex-1'>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                              Start Date
+                            </label>
+                            <input
+                              type="date"
+                              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            />
+                          </div> */}
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Address
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              </div>
+              <div className='flex flex-row py-3 gap-5'>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    From Grade
+                  </label>
+                  <select
+                    required
+
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  >
+                    <option value="">Select Class</option>
+                    <option value="nursery">Nursery</option>
+                    <option value="lkg">LKG</option>
+                    <option value="ukg">UKG</option>
+                    <option value="1">Class 1</option>
+                    <option value="2">Class 2</option>
+                    <option value="3">Class 3</option>
+                    <option value="4">Class 4</option>
+                    <option value="5">Class 5</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                  </select>
+                </div>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    To Grade
+                  </label>
+                  <select
+                    required
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  >
+                    <option value="">Select Class</option>
+                    <option value="nursery">Nursery</option>
+                    <option value="lkg">LKG</option>
+                    <option value="ukg">UKG</option>
+                    <option value="1">Class 1</option>
+                    <option value="2">Class 2</option>
+                    <option value="3">Class 3</option>
+                    <option value="4">Class 4</option>
+                    <option value="5">Class 5</option>
+                    <option value="6">Class 6</option>
+                    <option value="7">Class 7</option>
+                    <option value="8">Class 8</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="11">Class 11</option>
+                    <option value="12">Class 12</option>
+                  </select>
+                </div>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Year
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Board
+                  </label>
+                  <select id="board" name="board" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  >
+                    <option value="">--Select Board--</option>
+                    <option value="CBSE">CBSE</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="State">State Board</option>
+                    <option value="IB">IB</option>
+                    <option value="IGCSE">IGCSE / Cambridge</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Medium
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
+              </div>
+              <div className='flex justify-end'>
+                <button className='flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg transition-colors'><Trash2 />Delete</button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
     </div>
+
+
   );
+
+  const renderSubmitForm = () => (
+    <div className="bg-gray-100 flex items-center justify-center min-h-screen">
+
+      <div className="bg-green-100 border border-green-400 text-green-800 px-6 py-5 rounded-lg shadow-md max-w-xl w-full">
+        <h2 className="text-lg font-semibold mb-2">🎉 Admission Form Submitted Successfully!</h2>
+        <p className="mb-1">
+          You will receive a confirmation email shortly.
+        </p>
+        <p className="mb-1 font-medium">
+          Your <span className="font-semibold">Admission Form ID</span> is:
+          <span className="text-green-900 bg-green-200 px-2 py-0.5 rounded font-mono">AP2501</span>
+        </p>
+        <p className="mt-2">
+          You can use this ID to track the status of your application.
+        </p>
+      </div>
+
+    </div>
+  )
+
 
   const renderCurrentStep = () => {
     switch (currentStep) {
@@ -1091,6 +1319,8 @@ export default function AdmissionForm() {
         return renderBirthCertificateInfo();
       case 6:
         return renderAcademicInfo();
+      case 7:
+        return renderSubmitForm();
       default:
         return null;
     }
@@ -1123,13 +1353,22 @@ export default function AdmissionForm() {
                 Previous
               </button>
 
-              {currentStep === steps.length ? (
+              {currentStep === steps.length - 1 ? (
                 <button
                   type="button"
-                  onClick={handleSubmit}
+                  // onClick={handleSubmit}
+                  onClick={nextStep}
+                  className="px-8 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-all duration-200 transform hover:scale-105">
+                  Submit Application
+                </button>
+              ) : currentStep === steps.length ? (
+                <button
+                  type="button"
+                  // onClick={handleSubmit}
+                  onClick={nextStep}
                   className="px-8 py-3 bg-green-500 text-white rounded-lg font-medium hover:bg-green-600 transition-all duration-200 transform hover:scale-105"
                 >
-                  Submit Application
+                  Done
                 </button>
               ) : (
                 <button
@@ -1145,5 +1384,5 @@ export default function AdmissionForm() {
         </div>
       </div>
     </div>
-  );
-}
+  )
+};

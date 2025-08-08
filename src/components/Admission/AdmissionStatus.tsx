@@ -28,7 +28,7 @@ export default function AdmissionStatus() {
   const [applications] = useState<AdmissionApplication[]>([
     {
       id: '1',
-      applicationNumber: 'ADM2024001',
+      applicationNumber: 'ADM2025001',
       studentName: 'Rahul Kumar',
       className: 'Class 9',
       academicYear: '2024-25',
@@ -46,7 +46,7 @@ export default function AdmissionStatus() {
     },
     {
       id: '2',
-      applicationNumber: 'ADM2024002',
+      applicationNumber: 'ADM2025002',
       studentName: 'Ajith kumar',
       className: 'Class 6',
       academicYear: '2024-25',

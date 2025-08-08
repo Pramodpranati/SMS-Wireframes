@@ -599,7 +599,7 @@ const TeacherModal: React.FC<{
             {activeTab === 'personal' && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className='flex flex-row gap-4 items-center'>
-                  <img src="/img_avatar.png" className='rounded-full h-20 w-20' alt="Avatar"></img>
+                  <img src="/img_avatar.png" className='rounded-none h-20 w-20' alt="Avatar"></img>
                   <input type="file" />
                 </div>
                 <div>
@@ -706,7 +706,7 @@ const TeacherModal: React.FC<{
                 <div className=''>
                   <h3 className="text-lg font-medium text-gray-900 mb-4">Address Information</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="md:col-span-2">
+                    <div >
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         House no/building name
                       </label>
@@ -723,9 +723,26 @@ const TeacherModal: React.FC<{
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       />
                     </div>
-                    <div className="md:col-span-2">
+                    <div >
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Street
+                      </label>
+                      <input
+                        type="text"
+                        value={formData.contactInfo.address.street}
+                        onChange={(e) => setFormData({
+                          ...formData,
+                          contactInfo: {
+                            ...formData.contactInfo,
+                            address: { ...formData.contactInfo.address, street: e.target.value }
+                          }
+                        })}
+                        className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      />
+                    </div>
+                    <div >
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Locality
                       </label>
                       <input
                         type="text"

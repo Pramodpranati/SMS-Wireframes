@@ -281,6 +281,61 @@ export const Settings: React.FC = () => {
             <label className="block text-sm font-medium text-gray-700 mb-2">Football</label>
           </div>
         </div>
+
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Qualification</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+
+            <option className="ba_economics">BA - Economics</option>
+            <option className="bcom_accounting">B.Com - Accounting & Finance</option>
+            <option className="bsc_cs">B.Sc - Computer Science</option>
+          </div>
+        </div>
+         <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Community</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+
+            <option className="ba_economics">General</option>
+            <option className="bcom_accounting">SC</option>
+            <option className="bsc_cs">OBC</option>
+          </div>
+        </div>
+         <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Caste</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+
+            <option className="ba_economics">Caste 1</option>
+            <option className="bcom_accounting">Caste 2</option>
+            <option className="bsc_cs">Caste 3</option>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -47,7 +47,7 @@ export const TimeTableManagement: React.FC = () => {
           <h1 className="text-2xl font-bold text-gray-800">Time Table Management</h1>
           <p className="text-gray-600">View and manage class schedules</p>
         </div>
-        {canEdit && (
+        {/* {canEdit && (
           <button
             onClick={() => setShowAddModal(true)}
             className="flex items-center space-x-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200"
@@ -55,7 +55,7 @@ export const TimeTableManagement: React.FC = () => {
             <Plus className="w-4 h-4" />
             <span>Add Entry</span>
           </button>
-        )}
+        )} */}
       </div>
 
       {/* Filters */}

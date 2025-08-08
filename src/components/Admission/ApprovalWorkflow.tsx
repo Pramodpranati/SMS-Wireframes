@@ -8,7 +8,7 @@ import {
   User,
   Calendar,
   MessageSquare,
-  ArrowRight,
+  ArrowDown,
   Download
 } from 'lucide-react';
 
@@ -50,7 +50,7 @@ export default function ApprovalWorkflow() {
   const [admissionRequests] = useState<AdmissionRequest[]>([
     {
       id: '1',
-      applicationNumber: 'ADM2024001',
+      applicationNumber: 'ADM2025001',
       studentName: 'Rahul Kumar',
       className: 'Class 9',
       submissionDate: '2024-01-15',
@@ -85,8 +85,8 @@ export default function ApprovalWorkflow() {
         },
         {
           id: 'principal_approval',
-          title: 'Principal Approval',
-          description: 'Final approval from school principal',
+          title: 'Final Approval',
+          description: 'Final approval from school management',
           assignedTo: 'Principal',
           status: 'pending'
         },
@@ -109,7 +109,7 @@ export default function ApprovalWorkflow() {
     },
     {
       id: '2',
-      applicationNumber: 'ADM2024002',
+      applicationNumber: 'ADM2025002',
       studentName: 'Ajith Kumar',
       className: 'Class 6',
       submissionDate: '2024-01-18',
@@ -361,7 +361,7 @@ export default function ApprovalWorkflow() {
 
                                 {index < request.approvalSteps.length - 1 && (
                                   <div className="flex justify-center my-2">
-                                    <ArrowRight className="w-5 h-5 text-gray-400" />
+                                    <ArrowDown className="w-5 h-5 text-gray-400" />
                                   </div>
                                 )}
                               </div>

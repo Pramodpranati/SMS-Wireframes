@@ -265,8 +265,32 @@ const StudentManagement: React.FC = () => {
         return (
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">New Student[Admission No]</label>
+                        <input
+                            type="text"
+                            value={formData.lastName}
+                            onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Existing Student[Admission No] *if any</label>
+                        <input
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required
+                        />
+                    </div>
+                    </div>
+                <div className="border-t pt-6">
+                    <h3 className="text-lg font-semibold mb-4">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className='flex flex-row gap-4 items-center'>
-                        <img src="/img_avatar.png" className='rounded-full h-20 w-20' alt="Avatar" />
+                        <img src="/img_avatar.png" className='rounded-none h-20 w-20' alt="Avatar" />
                         <button className='px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
                     </div>
                     <div>
@@ -352,6 +376,16 @@ const StudentManagement: React.FC = () => {
                         />
                     </div>
                     <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Locality *</label>
+                        <input
+                            type="text"
+                            value={formData.address}
+                            onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required
+                        />
+                    </div>
+                    <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">City *</label>
                         <input
                             type="text"
@@ -399,6 +433,7 @@ const StudentManagement: React.FC = () => {
                             onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
+                    </div>
                     </div>
                 </div>
 
@@ -590,7 +625,7 @@ const StudentManagement: React.FC = () => {
 
                 <div className="border-t pt-6">
                     <h3 className="text-lg font-semibold mb-4">Extra Curricular Activity</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1"></label>
                             <select
@@ -604,7 +639,36 @@ const StudentManagement: React.FC = () => {
                                 <option value="other">Chess</option>
                             </select>
                         </div>
-                    </div>
+                    </div> */}
+                    <div>
+   
+    <div className="flex flex-col gap-2">
+        {["Cricket", "Dance", "Chess"].map((activity) => (
+            <label key={activity} className="inline-flex items-center">
+                <input
+                    type="checkbox"
+                    value={activity}
+                    onChange={(e) => {
+                        const value = e.target.value;
+
+                        // setFormData((prevData) => {
+                        //     const selected = new Set(prevData.activities || []);
+                        //     if (isChecked) {
+                        //         selected.add(value);
+                        //     } else {
+                        //         selected.delete(value);
+                        //     }
+                        //     return { ...prevData, activities: Array.from(selected) };
+                        // });
+                    }}
+                    className="form-checkbox h-4 w-4 text-blue-600"
+                />
+                <span className="ml-2 text-gray-700">{activity}</span>
+            </label>
+        ))}
+    </div>
+</div>
+
                 </div>
 
                 <div className="flex justify-end space-x-2 pt-6">

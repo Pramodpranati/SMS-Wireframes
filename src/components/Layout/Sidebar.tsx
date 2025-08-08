@@ -67,6 +67,12 @@ const navigationItems: NavigationItem[] = [
     roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
+    id: 'specialclass',
+    label: 'Special Class Management',
+    icon: 'Clock',
+    roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
+  },
+  {
     id: 'attendance',
     label: 'Attendance',
     icon: 'UserCheck',
