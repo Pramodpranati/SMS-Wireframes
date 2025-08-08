@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   Users,
-  Calendar,
+  UserRoundPlus,
   UserCheck,
   Settings,
   BookOpen,
@@ -33,7 +33,7 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'admissiondashboard',
     label: 'Admission Management',
-    icon: 'GraduationCap',
+    icon: 'UserRoundPlus',
     roles: ['system_admin', 'management']
   },
   {
@@ -90,6 +90,7 @@ const iconMap = {
   School,
   Users,
   GraduationCap,
+  UserRoundPlus,
   BookOpen,
   Clock,
   UserCheck,
