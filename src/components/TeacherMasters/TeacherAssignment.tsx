@@ -18,7 +18,8 @@ import {
     ChevronRight,
     AlertCircle,
     CheckCircle,
-    Edit
+    Edit,
+    Replace
 } from 'lucide-react';
 
 interface Teacher {
@@ -475,6 +476,12 @@ const TeacherAssignment: React.FC = () => {
 
                                                     <div className="flex gap-2">
                                                         <button
+                                                            className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
+                                                        >
+                                                            <Replace className="w-4 h-4" />
+                                                            Replace
+                                                        </button>
+                                                        <button
                                                             onClick={() => handleEditAssignment(assignment)}
                                                             className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors flex items-center justify-center gap-2"
                                                         >
@@ -545,6 +552,11 @@ const TeacherAssignment: React.FC = () => {
                                             </td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <div className="flex gap-2">
+                                                    <button
+                                                        className="text-blue-600 hover:text-blue-900"
+                                                    >
+                                                        <Replace className="w-4 h-4" />
+                                                    </button>
                                                     <button
                                                         onClick={() => handleEditAssignment(assignment)}
                                                         className="text-blue-600 hover:text-blue-900"
