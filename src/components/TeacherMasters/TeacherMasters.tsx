@@ -16,7 +16,8 @@ import {
   Presentation,
   User,
   Users,
-  X
+  X,
+  Link
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 
@@ -1321,11 +1322,11 @@ const TeacherModal: React.FC<{
               <div className="space-y-8">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Uploaded Attachments</h3>
                 <div>
-                  <h4>1. UG Certificate</h4>
-                  <h4>2. PG Certificate</h4>
-                  <h4>3. Professional Certificate</h4>
-                  <h4>4. Experience Letter</h4>
-                </div>
+                 <h4 className="text-blue-600 hover:underline">1. UG Certificate </h4>
+                  <h4 className="text-blue-600 hover:underline">2. PG Certificate</h4>
+                  <h4 className="text-blue-600 hover:underline">3. Professional Certificate</h4>
+                  <h4 className="text-blue-600 hover:underline">4. Experience Letter</h4>
+                </div >
 
                 <div>
                   <div className='flex flex-row justify-between'>

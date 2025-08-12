@@ -82,6 +82,7 @@ export interface AttendanceRecord {
 }
 
 export interface SchoolSettings {
+  contactInfo: any;
   name: string;
   address: string;
   contactNumber: string;

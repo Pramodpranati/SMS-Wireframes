@@ -79,6 +79,12 @@ const navigationItems: NavigationItem[] = [
     roles: ['system_admin', 'management', 'teacher']
   },
   {
+    id: 'leave',
+    label: 'Leave Management',
+    icon: 'UserCheck',
+    roles: ['system_admin', 'management', 'teacher','student', 'parent']
+  },
+  {
     id: 'teachersassignment',
     label: 'Teachers Assignment',
     icon: 'UserCheck',

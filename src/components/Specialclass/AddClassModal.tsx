@@ -11,15 +11,33 @@ interface AddClassModalProps {
 export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, onSubmit }) => {
   const [formData, setFormData] = useState<SpecialClassFormData>({
     grade: '',
-    section: '',
+    teacher: '',
+    sections: '',
     subject: '',
     date: '',
     startTime: '',
     endTime: ''
   });
-
+  const sections = [
+    { id: "1", name: "A" },
+    { id: "2", name: "B" },
+    { id: "3", name: "C" },
+    { id: "3", name: "D" },
+    { id: "3", name: "E" },
+    { id: "3", name: "F" },
+    { id: "3", name: "G" },
+    { id: "3", name: "H" },
+    { id: "3", name: "I" }
+  ];
+  const teacher = [
+    { id: "1", name: "Dr. Sarah Johnson" ,employeeId: 'EMP001' },
+    { id: "2", name: "Prof. Michael Chen",employeeId: 'EMP002'},
+    { id: "3", name: "Ms. Emily Rodriguez",employeeId: 'EMP003'},
+    { id: "3", name: "Mr. David Wilson",employeeId: 'EMP004' }
+    
+  ];
   const [errors, setErrors] = useState<Partial<SpecialClassFormData>>({});
-
+  const [selectedSection, setSelectedSection] = useState<string>('');
   const handleInputChange = (field: keyof SpecialClassFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     if (errors[field]) {
@@ -29,14 +47,14 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
 
   const validateForm = (): boolean => {
     const newErrors: Partial<SpecialClassFormData> = {};
-    
+
     if (!formData.grade.trim()) newErrors.grade = 'Grade is required';
-    if (!formData.section.trim()) newErrors.section = 'Section is required';
+    if (!formData.sections.trim()) newErrors.sections = 'Section is required';
     if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
     if (!formData.date) newErrors.date = 'Date is required';
     if (!formData.startTime) newErrors.startTime = 'Start time is required';
     if (!formData.endTime) newErrors.endTime = 'End time is required';
-    
+
     if (formData.startTime && formData.endTime && formData.startTime >= formData.endTime) {
       newErrors.endTime = 'End time must be after start time';
     }
@@ -51,7 +69,8 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
       onSubmit(formData);
       setFormData({
         grade: '',
-        section: '',
+        teacher: '',
+        sections: '',
         subject: '',
         date: '',
         startTime: '',
@@ -65,7 +84,8 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
   const handleClose = () => {
     setFormData({
       grade: '',
-      section: '',
+      teacher: '',
+      sections: '',
       subject: '',
       date: '',
       startTime: '',
@@ -79,7 +99,7 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 rounded-t-2xl">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center space-x-2">
@@ -104,9 +124,8 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
               <select
                 value={formData.grade}
                 onChange={(e) => handleInputChange('grade', e.target.value)}
-                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
-                  errors.grade ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.grade ? 'border-red-300' : 'border-gray-300'
+                  }`}
               >
                 <option value="">Select Grade</option>
                 {Array.from({ length: 12 }, (_, i) => (
@@ -122,7 +141,7 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Section
               </label>
-              <input
+              {/* <input
                 type="text"
                 value={formData.section}
                 onChange={(e) => handleInputChange('section', e.target.value)}
@@ -130,27 +149,74 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
                 className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
                   errors.section ? 'border-red-300' : 'border-gray-300'
                 }`}
-              />
-              {errors.section && <p className="text-red-500 text-xs mt-1">{errors.section}</p>}
+              /> */}
+              <select
+                value={selectedSection}
+                onChange={(e) => setSelectedSection(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
+              >
+                <option value="">Select Section</option>
+                {sections.map((section) => (
+                  <option key={section.id} value={section.id}>
+                    Section {section.name}
+                  </option>
+                ))}
+              </select>
+
+              {errors.sections && <p className="text-red-500 text-xs mt-1">{errors.section}</p>}
             </div>
           </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Teacher
+            </label>
+            {/* <input
+                type="text"
+                value={formData.Teacher}
+                onChange={(e) => handleInputChange('Teacher', e.target.value)}
+                placeholder="Enter Teacher Name"
+                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
+                  errors.Teacher ? 'border-red-300' : 'border-gray-300'
+                }`}
+              />  */}
+            <select
+              value={formData.teacher}
+              onChange={(e) => handleInputChange('teacher', e.target.value)}
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.teacherId ? 'border-red-500' : 'border-gray-300'
+                }`}
+            >
+              <option value="">Select Teacher</option>
+              {teacher.map(teacher => (
+                <option key={teacher.id} value={teacher.id}>
+                  {teacher.name} - {teacher.employeeId}
+                </option>
+              ))}
+            </select>
 
+          </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Subject
             </label>
-            <input
-              type="text"
+            <select
               value={formData.subject}
               onChange={(e) => handleInputChange('subject', e.target.value)}
-              placeholder="Enter subject name"
-              className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
-                errors.subject ? 'border-red-300' : 'border-gray-300'
-              }`}
-            />
+              className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.subject ? 'border-red-300' : 'border-gray-300'
+                }`}
+            >
+              <option value="">Select Subject</option>
+              <option value="English">English</option>
+              <option value="Mathematics">Mathematics</option>
+              <option value="Social Science">Social Science</option>
+              <option value="Science">Science</option>
+              <option value="Hindi">Hindi</option>
+            </select>
             {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
           </div>
 
+         
+          <div className="grid grid-cols-3 gap-4">
+            
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Date
@@ -160,14 +226,11 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
               value={formData.date}
               onChange={(e) => handleInputChange('date', e.target.value)}
               min={new Date().toISOString().split('T')[0]}
-              className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
-                errors.date ? 'border-red-300' : 'border-gray-300'
-              }`}
+              className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.date ? 'border-red-300' : 'border-gray-300'
+                }`}
             />
             {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
           </div>
-
-          <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Start Time
@@ -176,9 +239,8 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
                 type="time"
                 value={formData.startTime}
                 onChange={(e) => handleInputChange('startTime', e.target.value)}
-                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
-                  errors.startTime ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.startTime ? 'border-red-300' : 'border-gray-300'
+                  }`}
               />
               {errors.startTime && <p className="text-red-500 text-xs mt-1">{errors.startTime}</p>}
             </div>
@@ -191,9 +253,8 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
                 type="time"
                 value={formData.endTime}
                 onChange={(e) => handleInputChange('endTime', e.target.value)}
-                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${
-                  errors.endTime ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.endTime ? 'border-red-300' : 'border-gray-300'
+                  }`}
               />
               {errors.endTime && <p className="text-red-500 text-xs mt-1">{errors.endTime}</p>}
             </div>

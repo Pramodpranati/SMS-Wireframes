@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, FileText, User, Calendar, MapPin, Phone, Mail, GraduationCap, CheckCircle, Clock, XCircle, Plus, Trash2 } from 'lucide-react';
+import { Upload, FileText, User, Calendar, MapPin, Phone, Mail, GraduationCap, CheckCircle, Clock, XCircle, Plus, Trash2, Link } from 'lucide-react';
 
 interface PersonalInfo {
   firstName: string;
@@ -23,6 +23,7 @@ interface ContactInfo {
   state: string;
   pincode: string;
   district: string;
+  nationality: string
 }
 
 interface ParentInfo {
@@ -103,7 +104,8 @@ export default function AdmissionForm() {
       city: '',
       state: '',
       pincode: '',
-      district: ''
+      district: '',
+      nationality:''
     },
     parentInfo: {
       fatherName: '',
@@ -197,6 +199,200 @@ export default function AdmissionForm() {
     "Lakshadweep",
     "Puducherry"
   ]
+  const nationality = [
+    "Select Nationality",
+    "Afghan",
+    "Albanian",
+    "Algerian",
+    "American",
+    "Andorran",
+    "Angolan",
+    "Argentine",
+    "Armenian",
+    "Australian",
+    "Austrian",
+    "Azerbaijani",
+    "Bahamian",
+    "Bahraini",
+    "Bangladeshi",
+    "Barbadian",
+    "Belarusian",
+    "Belgian",
+    "Belizean",
+    "Beninese",
+    "Bhutanese",
+    "Bolivian",
+    "Bosnian",
+    "Botswanan",
+    "Brazilian",
+    "British",
+    "Bruneian",
+    "Bulgarian",
+    "Burkinabe",
+    "Burmese",
+    "Burundian",
+    "Cambodian",
+    "Cameroonian",
+    "Canadian",
+    "Cape Verdean",
+    "Central African",
+    "Chadian",
+    "Chilean",
+    "Chinese",
+    "Colombian",
+    "Comoran",
+    "Congolese (Congo-Brazzaville)",
+    "Congolese (Congo-Kinshasa)",
+    "Costa Rican",
+    "Croatian",
+    "Cuban",
+    "Cypriot",
+    "Czech",
+    "Danish",
+    "Djiboutian",
+    "Dominican",
+    "Dutch",
+    "East Timorese",
+    "Ecuadorean",
+    "Egyptian",
+    "Emirati",
+    "Equatorial Guinean",
+    "Eritrean",
+    "Estonian",
+    "Ethiopian",
+    "Fijian",
+    "Finnish",
+    "French",
+    "Gabonese",
+    "Gambian",
+    "Georgian",
+    "German",
+    "Ghanaian",
+    "Greek",
+    "Grenadian",
+    "Guatemalan",
+    "Guinean",
+    "Guinea-Bissauan",
+    "Guyanese",
+    "Haitian",
+    "Honduran",
+    "Hungarian",
+    "I-Kiribati",
+    "Icelander",
+    "Indian",
+    "Indonesian",
+    "Iranian",
+    "Iraqi",
+    "Irish",
+    "Israeli",
+    "Italian",
+    "Ivorian",
+    "Jamaican",
+    "Japanese",
+    "Jordanian",
+    "Kazakhstani",
+    "Kenyan",
+    "Kittitian and Nevisian",
+    "Kuwaiti",
+    "Kyrgyz",
+    "Laotian",
+    "Latvian",
+    "Lebanese",
+    "Liberian",
+    "Libyan",
+    "Liechtensteiner",
+    "Lithuanian",
+    "Luxembourger",
+    "Macedonian",
+    "Malagasy",
+    "Malawian",
+    "Malaysian",
+    "Maldivian",
+    "Malian",
+    "Maltese",
+    "Marshallese",
+    "Mauritanian",
+    "Mauritian",
+    "Mexican",
+    "Micronesian",
+    "Moldovan",
+    "Monacan",
+    "Mongolian",
+    "Moroccan",
+    "Mosotho",
+    "Motswana",
+    "Mozambican",
+    "Namibian",
+    "Nauruan",
+    "Nepalese",
+    "New Zealander",
+    "Nicaraguan",
+    "Nigerien",
+    "Nigerian",
+    "North Korean",
+    "Northern Irish",
+    "Norwegian",
+    "Omani",
+    "Pakistani",
+    "Palauan",
+    "Panamanian",
+    "Papua New Guinean",
+    "Paraguayan",
+    "Peruvian",
+    "Polish",
+    "Portuguese",
+    "Qatari",
+    "Romanian",
+    "Russian",
+    "Rwandan",
+    "Saint Lucian",
+    "Salvadoran",
+    "Samoan",
+    "San Marinese",
+    "Sao Tomean",
+    "Saudi",
+    "Scottish",
+    "Senegalese",
+    "Serbian",
+    "Seychellois",
+    "Sierra Leonean",
+    "Singaporean",
+    "Slovakian",
+    "Slovenian",
+    "Solomon Islander",
+    "Somali",
+    "South African",
+    "South Korean",
+    "South Sudanese",
+    "Spanish",
+    "Sri Lankan",
+    "Sudanese",
+    "Surinamer",
+    "Swazi",
+    "Swedish",
+    "Swiss",
+    "Syrian",
+    "Taiwanese",
+    "Tajik",
+    "Tanzanian",
+    "Thai",
+    "Togolese",
+    "Tongan",
+    "Trinidadian or Tobagonian",
+    "Tunisian",
+    "Turkish",
+    "Tuvaluan",
+    "Ugandan",
+    "Ukrainian",
+    "Uruguayan",
+    "Uzbekistani",
+    "Venezuelan",
+    "Vietnamese",
+    "Welsh",
+    "Yemenite",
+    "Zambian",
+    "Zimbabwean"
+  ];
   const religionOptions = [
     "Select Religion",
     "Hindu",
@@ -418,13 +614,16 @@ export default function AdmissionForm() {
               placeholder="Enter 12-digit Aadhar number"
             />
             <button className='px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
+
           </div>
+          <h4 className="text-blue-600 hover:underline p-2 cursor-pointer">view here</h4>          
+
         </div>
         <div>
           <div className="flex flex-row items-center">
             <input type="checkbox" id="disability" name="disability" value="disability" />
             <label htmlFor="disability" className="ml-2">
-              Please indicate if you have any disability
+              Please indicate if you are differently abled.
             </label>
           </div>
           <textarea name="" id="" className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200' />
@@ -500,7 +699,7 @@ export default function AdmissionForm() {
             value={formData.contactInfo.alternatePhone}
             onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter Street"
+            placeholder="Enter locality"
           />
         </div>
 
@@ -572,6 +771,24 @@ export default function AdmissionForm() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             placeholder="Enter PIN code"
           />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Nationality *</label>
+          {/* <input
+            type="text"
+            required
+            value={formData.contactInfo.nationality}
+            onChange={(e) => handleInputChange('contactInfo', 'nationality', e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            placeholder="Enter nationality"
+          /> */}
+          <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+            {
+              nationality.map((data, index) => (
+                <option key={index} value={data}>{data}</option>
+              ))
+            }
+          </select>
         </div>
       </div>
     </div>
@@ -683,6 +900,7 @@ export default function AdmissionForm() {
 
       <div className="bg-green-50 p-4 rounded-lg">
         <h3 className="text-lg font-semibold text-green-800 mb-4">Guardian Information (if different from parents)</h3>
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Guardian's Name</label>
@@ -900,7 +1118,7 @@ export default function AdmissionForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Registrar Office *</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Register Office *</label>
           <input
             type="text"
             required
@@ -1056,7 +1274,7 @@ export default function AdmissionForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">TC Date</label>
+          <label className="block text-sm font-medium text-gray-700 mb-2">TC Issued Date</label>
           <input
             type="date"
             value={formData.academicInfo.tcDate}
@@ -1109,6 +1327,30 @@ export default function AdmissionForm() {
               <option value="2026-27">2026-27</option>
             </select>
           </div>
+          <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Board
+                  </label>
+                  <select id="board" name="board" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  >
+                    <option value="">--Select Board--</option>
+                    <option value="CBSE">CBSE</option>
+                    <option value="ICSE">ICSE</option>
+                    <option value="State">State Board</option>
+                    <option value="IB">IB</option>
+                    <option value="IGCSE">IGCSE / Cambridge</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div className='flex-1'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Medium
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
+                </div>
         </div>
       </div>
 
@@ -1140,7 +1382,7 @@ export default function AdmissionForm() {
       </div>
       <div className="grid grid-row-2  space-y-8">
         <div>
-          <div className='flex flex-row justify-between'>
+          <div className='flex flex-row justify-between pb-3'>
             <h3 className="text-lg font-medium text-gray-900 mb-4">Education History</h3>
             <button
               type="button"
@@ -1148,7 +1390,7 @@ export default function AdmissionForm() {
               className="flex items-center gap-2 px-6 py-2   bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Plus className="w-4 h-4" />
-              Add new
+              Add 
             </button>
           </div>
           {Array.from({ length: previoushistoryLength }).map((_, i) => (
@@ -1238,7 +1480,7 @@ export default function AdmissionForm() {
                 </div>
                 <div className='flex-1'>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Year
+                    Completed Year
                   </label>
                   <input
                     type="text"
@@ -1272,7 +1514,7 @@ export default function AdmissionForm() {
                 </div>
               </div>
               <div className='flex justify-end'>
-                <button className='flex items-center gap-2 px-6 py-2 bg-red-600 text-white rounded-lg transition-colors'><Trash2 />Delete</button>
+                <button className='flex items-center gap-2 px-2 py-1 bg-red-600 text-white rounded-lg transition-colors'><Trash2 /></button>
               </div>
             </div>
           ))}
@@ -1293,7 +1535,7 @@ export default function AdmissionForm() {
           You will receive a confirmation email shortly.
         </p>
         <p className="mb-1 font-medium">
-          Your <span className="font-semibold">Admission Form ID</span> is:
+          Your <span className="font-semibold">Application Form ID</span> is:
           <span className="text-green-900 bg-green-200 px-2 py-0.5 rounded font-mono">AP2501</span>
         </p>
         <p className="mt-2">

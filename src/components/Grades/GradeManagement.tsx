@@ -10,6 +10,7 @@ export const GradeManagement: React.FC = () => {
   const [selectedGradeId, setSelectedGradeId] = useState<string>('');
   const [editingGrade, setEditingGrade] = useState<Grade | null>(null);
   const [editingSection, setEditingSection] = useState<Section | null>(null);
+  const [previoushistoryLength, setprevioushistoryLength] = useState<number>(1)
 
   const [newGrade, setNewGrade] = useState({ name: '' });
   const [newSection, setNewSection] = useState({ name: '', roomNumber: '' });
@@ -21,6 +22,13 @@ export const GradeManagement: React.FC = () => {
       setShowAddGradeModal(false);
     }
   };
+  const teacher = [
+    { id: "1", name: "Dr. Sarah Johnson", employeeId: 'EMP001' },
+    { id: "2", name: "Prof. Michael Chen", employeeId: 'EMP002' },
+    { id: "3", name: "Ms. Emily Rodriguez", employeeId: 'EMP003' },
+    { id: "3", name: "Mr. David Wilson", employeeId: 'EMP004' }
+
+  ];
 
   const handleAddSection = () => {
     if (newSection.name.trim() && newSection.roomNumber.trim() && selectedGradeId) {
@@ -135,8 +143,8 @@ export const GradeManagement: React.FC = () => {
 
       {/* Add Grade Modal */}
       {showAddGradeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 ">
+          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <h3 className="text-lg font-semibold text-gray-800 mb-4">Add New Grade</h3>
             <div className="space-y-4">
               <div>
@@ -149,7 +157,99 @@ export const GradeManagement: React.FC = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
+
             </div>
+            <div className="grid grid-row-2  space-y-8">
+              <div>
+                <div className='flex flex-row justify-between pt-3 pb-3'>
+                  <label className="block text-sm font-medium text-gray-700 mb-2 ">Section</label>
+                  <button
+                    type="button"
+                    onClick={() => setprevioushistoryLength(previoushistoryLength + 1)}
+                    className="flex items-center gap-2 px-6 py-2   bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                    Add 
+                  </button>
+                </div>
+                {Array.from({ length: previoushistoryLength }).map((_, i) => (
+                  <div key={i} className="border p-3 rounded-md mb-4">
+                    <div className='flex flex-row py-3 gap-5'>
+                      <div className='flex-1'>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Section
+                        </label>
+                        <select
+                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                          defaultValue="A"
+                        >
+                          <option value="">Select Section</option>
+                          <option value="room101">A</option>
+                          <option value="room102">B</option>
+                          <option value="room103">C</option>
+                          <option value="room104">D</option>
+                          <option value="room105">E</option>
+                          <option value="room105">F</option>
+                         
+                        </select>
+                      </div>
+
+                      {/* <div className='flex-1'>
+                                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                                          Start Date
+                                        </label>
+                                        <input
+                                          type="date"
+                                          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        />
+                                      </div> */}
+                      <div className='flex-1'>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Room No
+                        </label>
+                        <select
+                          required
+
+                          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                        >
+                          <option value="">Select Room</option>
+                          <option value="room101">Room 101</option>
+                          <option value="room102">Room 102</option>
+                          <option value="room103">Room 103</option>
+                          <option value="room104">Room 104</option>
+                          <option value="room105">Room 105</option>
+                        </select>
+                      </div>
+
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Class Teacher
+                      </label>
+
+                      <select
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                      >
+                        <option value="">Select Teacher</option>
+                        <option >Dr. Sarah Johnson</option>
+                        <option >Prof. Michael Chen</option>
+                        <option >Ms. Emily Rodriguez</option>
+                        <option >Mr. David Wilson</option>
+                        
+                      </select>
+
+                    </div>
+                    <div className='flex justify-end pt-3'>
+                      <button className='flex items-center gap-2 px-1 py-1 pt-1 bg-red-600 text-white rounded-lg transition-colors'><Trash2 /></button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+
             <div className="flex items-center justify-end space-x-3 mt-6">
               <button
                 onClick={() => setShowAddGradeModal(false)}

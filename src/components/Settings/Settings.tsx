@@ -1,8 +1,23 @@
+import { BookOpen, Calendar, Clock, Plus, Save, School, UserCog } from 'lucide-react';
 import React, { useState } from 'react';
-import { Save, School, Clock, Calendar, BookOpen, GraduationCap, Plus, UserCog } from 'lucide-react';
 import { useSchool } from '../../contexts/SchoolContext';
 import { SchoolSettings } from '../../types';
 import RolePermissionManager from '../RolePermissionManager';
+
+interface ContactInfo {
+  email: string;
+  phoneNumber: string;
+  alternatePhone: string;
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+  district: string;
+  nationality: string
+}
+interface AdmissionFormData {
+  contactInfo: ContactInfo;
+}
 
 const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
@@ -17,6 +32,15 @@ export const Settings: React.FC = () => {
     alert('Settings saved successfully!');
   };
 
+  const handleInputChange = (section: keyof AdmissionFormData, field: string, value: any) => {
+    setFormData(prev => ({
+      ...prev,
+      [section]: {
+        ...prev[section],
+        [field]: value
+      }
+    }));
+  };
   const handleWorkingDayChange = (dayIndex: number, checked: boolean) => {
     const newWorkingDays = [...formData.workingDays];
     newWorkingDays[dayIndex] = checked;
@@ -55,7 +79,7 @@ export const Settings: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* School Details */}
-        <div className="bg-white rounded-lg shadow-md p-6">
+        <div className="bg-white col-span-2 rounded-lg shadow-md p-6">
           <div className="flex items-center space-x-3 mb-6">
             <School className="w-6 h-6 text-blue-600" />
             <h2 className="text-lg font-semibold text-gray-800">School Details</h2>
@@ -78,7 +102,7 @@ export const Settings: React.FC = () => {
               />
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">Address</label>
               <textarea
                 value={formData.address}
@@ -86,41 +110,109 @@ export const Settings: React.FC = () => {
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Contact Number</label>
-              <input
-                type="tel"
-                value={formData.contactNumber}
-                onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Working Days */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <div className="flex items-center space-x-3 mb-6">
-            <Calendar className="w-6 h-6 text-blue-600" />
-            <h2 className="text-lg font-semibold text-gray-800">Working Days</h2>
-          </div>
-
-          <div className="space-y-3">
-            {DAYS.map((day, index) => (
-              <label key={day} className="flex items-center space-x-3">
+            </div> */}
+            <div className='grid grid-cols-2 gap-3'>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
                 <input
-                  type="checkbox"
-                  checked={formData.workingDays[index]}
-                  onChange={(e) => handleWorkingDayChange(index, e.target.checked)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter House No/Building Name"
                 />
-                <span className="text-sm font-medium text-gray-700">{day}</span>
-              </label>
-            ))}
+              </div>
+
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Phone no</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter House No/Building Name"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">House No/Building Name *</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter House No/Building Name"
+                />
+              </div>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Street *</label>
+                <input
+                  type="text"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter Street"
+                />
+              </div>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Locality *</label>
+                <input
+                  type="text"
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter locality"
+                />
+              </div>
+
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">City *</label>
+                <input
+                  type="text"
+                  required
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter city"
+                />
+              </div>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">District *</label>
+                <input
+                  type="text"
+                  required
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter city"
+                />
+              </div>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">State *</label>
+                <input
+                  type="text"
+                  required
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter city"
+                />
+              </div>
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Country *</label>
+                <input
+                  type="text"
+                  required
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter city"
+                />
+              </div>
+
+              <div className='flex-1'>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Zipcode *</label>
+                <input
+                  type="text"
+                  required
+
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter city"
+                />
+              </div>
+            </div>
           </div>
         </div>
+
 
         {/* Timing Settings */}
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -204,6 +296,27 @@ export const Settings: React.FC = () => {
             </div>
           </div>
         </div>
+        {/* Working Days */}
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="flex items-center space-x-3 mb-6">
+            <Calendar className="w-6 h-6 text-blue-600" />
+            <h2 className="text-lg font-semibold text-gray-800">Working Days</h2>
+          </div>
+
+          <div className="space-y-3">
+            {DAYS.map((day, index) => (
+              <label key={day} className="flex items-center space-x-3">
+                <input
+                  type="checkbox"
+                  checked={formData.workingDays[index]}
+                  onChange={(e) => handleWorkingDayChange(index, e.target.checked)}
+                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                />
+                <span className="text-sm font-medium text-gray-700">{day}</span>
+              </label>
+            ))}
+          </div>
+        </div>
 
         {/* Quick Actions */}
         <div className="bg-white rounded-lg shadow-md p-6">
@@ -275,10 +388,12 @@ export const Settings: React.FC = () => {
             </button>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Cricket</label>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Chess</label>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Athlete</label>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Football</label>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Cricket</li>
+              <li>Chess</li>
+              <li>Athlete</li>
+              <li>Football</li>
+            </ul>
           </div>
         </div>
 
@@ -295,12 +410,14 @@ export const Settings: React.FC = () => {
           </div>
           <div>
 
-            <option className="ba_economics">BA - Economics</option>
-            <option className="bcom_accounting">B.Com - Accounting & Finance</option>
-            <option className="bsc_cs">B.Sc - Computer Science</option>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li className="ba_economics">BA - Economics</li>
+              <li className="bcom_accounting">B.Com - Accounting & Finance</li>
+              <li className="bsc_cs">B.Sc - Computer Science</li>
+            </ul>
           </div>
         </div>
-         <div className='bg-white rounded-lg shadow-md p-6'>
+        <div className='bg-white rounded-lg shadow-md p-6'>
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center space-x-3 mb-6">
               <UserCog className="w-6 h-6 text-blue-600" />
@@ -313,12 +430,14 @@ export const Settings: React.FC = () => {
           </div>
           <div>
 
-            <option className="ba_economics">General</option>
-            <option className="bcom_accounting">SC</option>
-            <option className="bsc_cs">OBC</option>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li className="ba_economics">General</li>
+              <li className="bcom_accounting">SC</li>
+              <li className="bsc_cs">OBC</li>
+            </ul>
           </div>
         </div>
-         <div className='bg-white rounded-lg shadow-md p-6'>
+        <div className='bg-white rounded-lg shadow-md p-6'>
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center space-x-3 mb-6">
               <UserCog className="w-6 h-6 text-blue-600" />
@@ -331,9 +450,98 @@ export const Settings: React.FC = () => {
           </div>
           <div>
 
-            <option className="ba_economics">Caste 1</option>
-            <option className="bcom_accounting">Caste 2</option>
-            <option className="bsc_cs">Caste 3</option>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li className="ba_economics">Caste 1</li>
+              <li className="bcom_accounting">Caste 2</li>
+              <li className="bsc_cs">Caste 3</li>
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Grades</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Grade LKG</li>
+              <li>Grade UKG</li>
+              <li>Grade 1</li>
+
+
+            </ul>
+          </div>
+        </div>
+
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Rooms</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Room 101</li>
+              <li>Room 102</li>
+              <li>Room 103</li>
+
+
+            </ul>
+          </div>
+        </div>
+        {/* <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Sections</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Section A</li>
+              <li>Section B</li>
+              <li>Section C</li>
+
+
+            </ul>
+          </div>
+        </div> */}
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Subjects</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>English</li>
+              <li>Mathematics</li>
+              <li>Hindi</li>
+              <li>Social Science</li>
+              <li>Science</li>
+
+
+            </ul>
           </div>
         </div>
       </div>
