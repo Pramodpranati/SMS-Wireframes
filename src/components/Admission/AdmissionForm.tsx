@@ -18,11 +18,21 @@ interface ContactInfo {
   email: string;
   phoneNumber: string;
   alternatePhone: string;
-  address: string;
+  houseno: string;
+  street: string;
+  locality: string;
   city: string;
+  landmark: string;
   state: string;
   pincode: string;
   district: string;
+  houseno1: string;
+  street1: string;
+  locality1: string;
+  city1: string;
+  landmark1: string;
+  pincode1: string;
+  district1: string;
   nationality: string
 }
 
@@ -100,12 +110,22 @@ export default function AdmissionForm() {
       email: '',
       phoneNumber: '',
       alternatePhone: '',
-      address: '',
+      houseno: '',
+      street: '',
+      locality: '',
+      landmark: '',
       city: '',
       state: '',
       pincode: '',
       district: '',
-      nationality:''
+      houseno1: '',
+      street1: '',
+      locality1: '',
+      landmark1: '',
+      city1: '',
+      pincode1: '',
+      district1: '',
+      nationality: ''
     },
     parentInfo: {
       fatherName: '',
@@ -162,6 +182,7 @@ export default function AdmissionForm() {
   ];
 
   const listofStates = [
+    "Select State",
     "Andhra Pradesh",
     "Arunachal Pradesh",
     "Assam",
@@ -393,6 +414,200 @@ export default function AdmissionForm() {
     "Zambian",
     "Zimbabwean"
   ];
+  const countries = [
+    "Select Country",
+    "Afghanistan",
+    "Albania",
+    "Algeria",
+    "United States",
+    "Andorra",
+    "Angola",
+    "Argentina",
+    "Armenia",
+    "Australia",
+    "Austria",
+    "Azerbaijan",
+    "Bahamas",
+    "Bahrain",
+    "Bangladesh",
+    "Barbados",
+    "Belarus",
+    "Belgium",
+    "Belize",
+    "Benin",
+    "Bhutan",
+    "Bolivia",
+    "Bosnia and Herzegovina",
+    "Botswana",
+    "Brazil",
+    "United Kingdom",
+    "Brunei",
+    "Bulgaria",
+    "Burkina Faso",
+    "Myanmar",
+    "Burundi",
+    "Cambodia",
+    "Cameroon",
+    "Canada",
+    "Cape Verde",
+    "Central African Republic",
+    "Chad",
+    "Chile",
+    "China",
+    "Colombia",
+    "Comoros",
+    "Republic of the Congo",
+    "Democratic Republic of the Congo",
+    "Costa Rica",
+    "Croatia",
+    "Cuba",
+    "Cyprus",
+    "Czech Republic",
+    "Denmark",
+    "Djibouti",
+    "Dominican Republic",
+    "Netherlands",
+    "East Timor",
+    "Ecuador",
+    "Egypt",
+    "United Arab Emirates",
+    "Equatorial Guinea",
+    "Eritrea",
+    "Estonia",
+    "Ethiopia",
+    "Fiji",
+    "Finland",
+    "France",
+    "Gabon",
+    "Gambia",
+    "Georgia",
+    "Germany",
+    "Ghana",
+    "Greece",
+    "Grenada",
+    "Guatemala",
+    "Guinea",
+    "Guinea-Bissau",
+    "Guyana",
+    "Haiti",
+    "Honduras",
+    "Hungary",
+    "Kiribati",
+    "Iceland",
+    "India",
+    "Indonesia",
+    "Iran",
+    "Iraq",
+    "Ireland",
+    "Israel",
+    "Italy",
+    "Ivory Coast",
+    "Jamaica",
+    "Japan",
+    "Jordan",
+    "Kazakhstan",
+    "Kenya",
+    "Saint Kitts and Nevis",
+    "Kuwait",
+    "Kyrgyzstan",
+    "Laos",
+    "Latvia",
+    "Lebanon",
+    "Liberia",
+    "Libya",
+    "Liechtenstein",
+    "Lithuania",
+    "Luxembourg",
+    "North Macedonia",
+    "Madagascar",
+    "Malawi",
+    "Malaysia",
+    "Maldives",
+    "Mali",
+    "Malta",
+    "Marshall Islands",
+    "Mauritania",
+    "Mauritius",
+    "Mexico",
+    "Micronesia",
+    "Moldova",
+    "Monaco",
+    "Mongolia",
+    "Morocco",
+    "Lesotho",
+    "Botswana",
+    "Mozambique",
+    "Namibia",
+    "Nauru",
+    "Nepal",
+    "New Zealand",
+    "Nicaragua",
+    "Niger",
+    "Nigeria",
+    "North Korea",
+    "Northern Ireland",
+    "Norway",
+    "Oman",
+    "Pakistan",
+    "Palau",
+    "Panama",
+    "Papua New Guinea",
+    "Paraguay",
+    "Peru",
+    "Poland",
+    "Portugal",
+    "Qatar",
+    "Romania",
+    "Russia",
+    "Rwanda",
+    "Saint Lucia",
+    "El Salvador",
+    "Samoa",
+    "San Marino",
+    "Sao Tome and Principe",
+    "Saudi Arabia",
+    "Scotland",
+    "Senegal",
+    "Serbia",
+    "Seychelles",
+    "Sierra Leone",
+    "Singapore",
+    "Slovakia",
+    "Slovenia",
+    "Solomon Islands",
+    "Somalia",
+    "South Africa",
+    "South Korea",
+    "South Sudan",
+    "Spain",
+    "Sri Lanka",
+    "Sudan",
+    "Suriname",
+    "Eswatini",
+    "Sweden",
+    "Switzerland",
+    "Syria",
+    "Taiwan",
+    "Tajikistan",
+    "Tanzania",
+    "Thailand",
+    "Togo",
+    "Tonga",
+    "Trinidad and Tobago",
+    "Tunisia",
+    "Turkey",
+    "Tuvalu",
+    "Uganda",
+    "Ukraine",
+    "Uruguay",
+    "Uzbekistan",
+    "Venezuela",
+    "Vietnam",
+    "Wales",
+    "Yemen",
+    "Zambia",
+    "Zimbabwe"
+  ];
   const religionOptions = [
     "Select Religion",
     "Hindu",
@@ -590,7 +805,25 @@ export default function AdmissionForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">Nationality *</label>
+          {/* <input
+            type="text"
+            required
+            value={formData.contactInfo.nationality}
+            onChange={(e) => handleInputChange('contactInfo', 'nationality', e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            placeholder="Enter nationality"
+          /> */}
+          <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+            {
+              nationality.map((data, index) => (
+                <option key={index} value={data}>{data}</option>
+              ))
+            }
+          </select>
+        </div>
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">Mother Tongue</label>
           <input
@@ -616,18 +849,19 @@ export default function AdmissionForm() {
             <button className='px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
 
           </div>
-          <h4 className="text-blue-600 hover:underline p-2 cursor-pointer">view here</h4>          
+          <h4 className="text-blue-600 hover:underline p-2 cursor-pointer">view here</h4>
 
         </div>
-        <div>
-          <div className="flex flex-row items-center">
-            <input type="checkbox" id="disability" name="disability" value="disability" />
-            <label htmlFor="disability" className="ml-2">
-              Please indicate if you are differently abled.
-            </label>
-          </div>
-          <textarea name="" id="" className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200' />
+
+      </div>
+      <div>
+        <div className="flex flex-row items-center">
+          <input type="checkbox" id="disability" name="disability" value="disability" />
+          <label htmlFor="disability" className="ml-2">
+            Please indicate if you are differently abled.
+          </label>
         </div>
+        <textarea name="" id="" className='w-full mt-2 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200' />
       </div>
     </div >
   );
@@ -669,71 +903,69 @@ export default function AdmissionForm() {
           placeholder="Enter alternate phone number"
         />
       </div>
+      <div className="block text-sm font-medium text-gray-700 mb-2">Current Address *</div>
 
-      <div className='w-full flex flex-row gap-3'>
+      <div className='border border-gray-300 p-8 rounded-lg  '>
+        <div className='w-full flex flex-row-3 pb-2 gap-3'>
 
-        <div className='flex-1'>
-          <label className="block text-sm font-medium text-gray-700 mb-2">House No/Building Name *</label>
-          <input
-            type="tel"
-            value={formData.contactInfo.alternatePhone}
-            onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter House No/Building Name"
-          />
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">House No/Building Name *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.houseno}
+              onChange={(e) => handleInputChange('contactInfo', 'houseno', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter House No/Building Name"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Street *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.street}
+              onChange={(e) => handleInputChange('contactInfo', 'street', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter Street"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Locality *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.locality}
+              onChange={(e) => handleInputChange('contactInfo', 'locality', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter locality"
+            />
+          </div>
         </div>
-        <div className='flex-1'>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Street *</label>
-          <input
-            type="tel"
-            value={formData.contactInfo.alternatePhone}
-            onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter Street"
-          />
-        </div>
-        <div className='flex-1'>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Locality *</label>
-          <input
-            type="tel"
-            value={formData.contactInfo.alternatePhone}
-            onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter locality"
-          />
-        </div>
+        <div className=' w-full flex flex-row-3 pb-2 gap-3'>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">City *</label>
+            <input
+              type="text"
+              required
+              value={formData.contactInfo.city}
+              onChange={(e) => handleInputChange('contactInfo', 'city', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter city"
+            />
+          </div>
+          <div className='flex-1' >
+            <label className="block text-sm font-medium text-gray-500 mb-2">District *</label>
+            <input
+              type="text"
+              required
+              value={formData.contactInfo.district}
+              onChange={(e) => handleInputChange('contactInfo', 'district', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter district"
+            />
+          </div>
 
-        <div className='flex-1'>
-          <label className="block text-sm font-medium text-gray-700 mb-2">City *</label>
-          <input
-            type="text"
-            required
-            value={formData.contactInfo.city}
-            onChange={(e) => handleInputChange('contactInfo', 'city', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter city"
-          />
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">District *</label>
-          <input
-            type="text"
-            required
-            value={formData.contactInfo.district}
-            onChange={(e) => handleInputChange('contactInfo', 'district', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter district"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">State *</label>
-          {/* <input
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">State *</label>
+            {/* <input
             type="text"
             required
             value={formData.contactInfo.state}
@@ -741,40 +973,46 @@ export default function AdmissionForm() {
             className=""
             placeholder="Enter state"
           /> */}
-          <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
-            {
-              listofStates.map((data, index) => (
-                <option key={index} value={data}>{data}</option>
-              ))
-            }
-          </select>
+            <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+              {
+                listofStates.map((data, index) => (
+                  <option key={index} value={data}>{data}</option>
+                ))
+              }
+            </select>
+          </div>
+
         </div>
 
-        <div className=''>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Landmark *</label>
-          <input
-            type="tel"
-            value={formData.contactInfo.alternatePhone}
-            onChange={(e) => handleInputChange('contactInfo', 'alternatePhone', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter Landmark"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">PIN Code *</label>
-          <input
-            type="text"
-            required
-            maxLength={6}
-            value={formData.contactInfo.pincode}
-            onChange={(e) => handleInputChange('contactInfo', 'pincode', e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-            placeholder="Enter PIN code"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Nationality *</label>
-          {/* <input
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Landmark *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.landmark}
+              onChange={(e) => handleInputChange('contactInfo', 'landmark', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter Landmark"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">PIN Code *</label>
+            <input
+              type="number"
+              required
+              maxLength={6}
+              value={formData.contactInfo.pincode}
+              onChange={(e) => handleInputChange('contactInfo', 'pincode', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter PIN code"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Country *</label>
+            {/* <input
             type="text"
             required
             value={formData.contactInfo.nationality}
@@ -782,15 +1020,159 @@ export default function AdmissionForm() {
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
             placeholder="Enter nationality"
           /> */}
-          <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
-            {
-              nationality.map((data, index) => (
-                <option key={index} value={data}>{data}</option>
-              ))
-            }
-          </select>
+            <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+              {
+                countries.map((data, index) => (
+                  <option key={index} value={data}>{data}</option>
+                ))
+              }
+            </select>
+          </div>
         </div>
       </div>
+
+      <div className=" flex justify-between text-sm font-medium text-gray-700 mb-2">Permanent Address *
+        <div className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            id="sameAsPermanent"
+            name="sameAsPermanent"
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+          />
+          <label htmlFor="sameAsPermanent" className="text-sm text-gray-700">
+            Same as Current Address
+          </label>
+        </div>
+      </div>
+
+
+
+      <div className='border border-gray-300 p-8 rounded-lg  '>
+        <div className='w-full flex flex-row-3 pb-2 gap-3'>
+
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">House No/Building Name *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.houseno1}
+              onChange={(e) => handleInputChange('contactInfo', 'houseno1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter House No/Building Name"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Street *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.street1}
+              onChange={(e) => handleInputChange('contactInfo', 'street1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter Street"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Locality *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.locality1}
+              onChange={(e) => handleInputChange('contactInfo', 'locality1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter locality"
+            />
+          </div>
+        </div>
+        <div className=' w-full flex flex-row-3 pb-2 gap-3'>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">City *</label>
+            <input
+              type="text"
+              required
+              value={formData.contactInfo.city1}
+              onChange={(e) => handleInputChange('contactInfo', 'city1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter city"
+            />
+          </div>
+          <div className='flex-1' >
+            <label className="block text-sm font-medium text-gray-500 mb-2">District *</label>
+            <input
+              type="text"
+              required
+              value={formData.contactInfo.district1}
+              onChange={(e) => handleInputChange('contactInfo', 'district1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter district"
+            />
+          </div>
+
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">State *</label>
+            {/* <input
+            type="text"
+            required
+            value={formData.contactInfo.state}
+            onChange={(e) => handleInputChange('contactInfo', 'state', e.target.value)}
+            className=""
+            placeholder="Enter state"
+          /> */}
+            <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+              {
+                listofStates.map((data, index) => (
+                  <option key={index} value={data}>{data}</option>
+                ))
+              }
+            </select>
+          </div>
+
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Landmark *</label>
+            <input
+              type="text"
+              value={formData.contactInfo.landmark1}
+              onChange={(e) => handleInputChange('contactInfo', 'landmark1', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter Landmark"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">PIN Code *</label>
+            <input
+              type="number"
+              required
+              maxLength={6}
+              value={formData.contactInfo.pincode}
+              onChange={(e) => handleInputChange('contactInfo', 'pincode', e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+              placeholder="Enter PIN code"
+            />
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-500 mb-2">Country *</label>
+            {/* <input
+            type="text"
+            required
+            value={formData.contactInfo.nationality}
+            onChange={(e) => handleInputChange('contactInfo', 'nationality', e.target.value)}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            placeholder="Enter nationality"
+          /> */}
+            <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+              {
+                countries.map((data, index) => (
+                  <option key={index} value={data}>{data}</option>
+                ))
+              }
+            </select>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 
@@ -897,10 +1279,48 @@ export default function AdmissionForm() {
           </div>
         </div>
       </div>
+      {/* Checkbox for Guardian info */}
+     
+
 
       <div className="bg-green-50 p-4 rounded-lg">
+         <div className='flex flex-row justify-end gap-3'>
+        <div className="flex items-center gap-2">
+          <input
+            type="radio"
+            id="sameAsPermanent"
+            name="sameAsPermanent"
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+          />
+          <label htmlFor="sameAsPermanent" className="text-sm text-gray-700">
+            Same as Father
+          </label>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="radio"
+            id="sameAsPermanent"
+            name="sameAsPermanent"
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+          />
+          <label htmlFor="sameAsPermanent" className="text-sm text-gray-700">
+            Same as Mother
+          </label>
+        </div>
+        <div className="flex items-center gap-2">
+          <input
+            type="radio"
+            id="sameAsPermanent"
+            name="sameAsPermanent"
+            className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+          />
+          <label htmlFor="sameAsPermanent" className="text-sm text-gray-700">
+            Other
+          </label>
+        </div>
+      </div>
         <h3 className="text-lg font-semibold text-green-800 mb-4">Guardian Information (if different from parents)</h3>
-        
+         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Guardian's Name</label>
@@ -1328,29 +1748,29 @@ export default function AdmissionForm() {
             </select>
           </div>
           <div className='flex-1'>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Board
-                  </label>
-                  <select id="board" name="board" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  >
-                    <option value="">--Select Board--</option>
-                    <option value="CBSE">CBSE</option>
-                    <option value="ICSE">ICSE</option>
-                    <option value="State">State Board</option>
-                    <option value="IB">IB</option>
-                    <option value="IGCSE">IGCSE / Cambridge</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div className='flex-1'>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Medium
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Board
+            </label>
+            <select id="board" name="board" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            >
+              <option value="">--Select Board--</option>
+              <option value="CBSE">CBSE</option>
+              <option value="ICSE">ICSE</option>
+              <option value="State">State Board</option>
+              <option value="IB">IB</option>
+              <option value="IGCSE">IGCSE / Cambridge</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className='flex-1'>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Medium
+            </label>
+            <input
+              type="text"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
         </div>
       </div>
 
@@ -1390,7 +1810,7 @@ export default function AdmissionForm() {
               className="flex items-center gap-2 px-6 py-2   bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               <Plus className="w-4 h-4" />
-              Add 
+              Add
             </button>
           </div>
           {Array.from({ length: previoushistoryLength }).map((_, i) => (

@@ -4,4 +4,9 @@
 4. Auto Generate Student rollno/Admission no
 5. Highlight the current day for teachers time table.
 6. Auto fill the add student form when click the student application no, the data come from admission form details.
+7.Auto fill the details[Name,Id] in the Leave Form.
+8.Created a Group Chatfor Teacher to student/parents,Management to Teacher.
+9.Create a Comment box for Approve or Reject in the Special class[Describe the reason].
+10.Don't need separate page Subject and Time table [It is in the Setting pag with sub menu].
+ 
 

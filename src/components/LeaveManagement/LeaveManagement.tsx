@@ -158,7 +158,7 @@ const LeaveManagement: React.FC = () => {
             </div>
             
             {/* Role Selector */}
-            <div className="flex items-center space-x-4">
+            {/* <div className="flex items-center space-x-4">
               <select
                 value={userRole}
                 onChange={(e) => setUserRole(e.target.value as any)}
@@ -169,7 +169,7 @@ const LeaveManagement: React.FC = () => {
                 <option value="teacher">Teacher</option>
                 <option value="admin">Admin</option>
               </select>
-            </div>
+            </div> */}
           </div>
           
           {/* Navigation Tabs */}

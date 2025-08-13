@@ -470,9 +470,12 @@ export const Settings: React.FC = () => {
           </div>
           <div>
             <ul className="list-disc list-inside text-sm text-gray-700">
-              <li>Grade LKG</li>
-              <li>Grade UKG</li>
-              <li>Grade 1</li>
+              <li>Nursery</li>
+              <li>LKG</li>
+              <li>UKG</li>
+              <li>Grade I</li>
+              <li>Grade II</li>
+              <li>Grade III</li>
 
 
             </ul>
@@ -544,7 +547,101 @@ export const Settings: React.FC = () => {
             </ul>
           </div>
         </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Blood Group</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>A+</li>
+              <li>A-</li>
+              <li>B+</li>
+              <li>B-</li>
+              <li>O+</li>
+              <li>O-</li>
+              <li>AB+</li>
+              <li>AB-</li>
+
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Leave Type</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Sick / Medical Leave</li>
+              <li>Emergency</li>
+              <li>Personal Reasons</li>
+              <li>Religious Holiday / Observance</li>
+              <li>Marriage / Wedding Leave</li>
+              <li>Maternity / Paternity Leave</li>
+
+            </ul>
+          </div>
+        </div>
+     
+         <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Country</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Afghanistan</li>
+              <li>Albania</li>
+              <li>Algeria</li>
+              <li>India</li>
+              <li>China</li>
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">State</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Assam</li>
+              <li>Bihar</li>
+              <li>Chhattisgarh</li>
+              <li>Goa</li>
+              <li>Tamil Nadu</li>
+              <li>Kerala</li>
+            </ul>
+          </div>
+        </div>
+</div>
+
       </div>
-    </div>
+   
   );
 };

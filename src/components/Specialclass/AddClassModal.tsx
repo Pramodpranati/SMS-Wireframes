@@ -30,11 +30,11 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
     { id: "3", name: "I" }
   ];
   const teacher = [
-    { id: "1", name: "Dr. Sarah Johnson" ,employeeId: 'EMP001' },
-    { id: "2", name: "Prof. Michael Chen",employeeId: 'EMP002'},
-    { id: "3", name: "Ms. Emily Rodriguez",employeeId: 'EMP003'},
-    { id: "3", name: "Mr. David Wilson",employeeId: 'EMP004' }
-    
+    { id: "1", name: "Dr. Sarah Johnson", employeeId: 'EMP001' },
+    { id: "2", name: "Prof. Michael Chen", employeeId: 'EMP002' },
+    { id: "3", name: "Ms. Emily Rodriguez", employeeId: 'EMP003' },
+    { id: "3", name: "Mr. David Wilson", employeeId: 'EMP004' }
+
   ];
   const [errors, setErrors] = useState<Partial<SpecialClassFormData>>({});
   const [selectedSection, setSelectedSection] = useState<string>('');
@@ -163,7 +163,7 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
                 ))}
               </select>
 
-              {errors.sections && <p className="text-red-500 text-xs mt-1">{errors.section}</p>}
+              {errors.sections && <p className="text-red-500 text-xs mt-1">{errors.sections}</p>}
             </div>
           </div>
           <div>
@@ -182,7 +182,7 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
             <select
               value={formData.teacher}
               onChange={(e) => handleInputChange('teacher', e.target.value)}
-              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.teacherId ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.teacher ? 'border-red-500' : 'border-gray-300'
                 }`}
             >
               <option value="">Select Teacher</option>
@@ -214,23 +214,23 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
             {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
           </div>
 
-         
+
           <div className="grid grid-cols-3 gap-4">
-            
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Date
-            </label>
-            <input
-              type="date"
-              value={formData.date}
-              onChange={(e) => handleInputChange('date', e.target.value)}
-              min={new Date().toISOString().split('T')[0]}
-              className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.date ? 'border-red-300' : 'border-gray-300'
-                }`}
-            />
-            {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
-          </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Date
+              </label>
+              <input
+                type="date"
+                value={formData.date}
+                onChange={(e) => handleInputChange('date', e.target.value)}
+                min={new Date().toISOString().split('T')[0]}
+                className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.date ? 'border-red-300' : 'border-gray-300'
+                  }`}
+              />
+              {errors.date && <p className="text-red-500 text-xs mt-1">{errors.date}</p>}
+            </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Start Time
@@ -258,7 +258,15 @@ export const AddClassModal: React.FC<AddClassModalProps> = ({ isOpen, onClose, o
               />
               {errors.endTime && <p className="text-red-500 text-xs mt-1">{errors.endTime}</p>}
             </div>
+           
           </div>
+           <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Remarks</label>
+              <textarea
+                className="w-full  min-h-[120px] px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                placeholder="Describe the special class you conducted..."
+              />
+            </div>
 
           <div className="flex space-x-3 pt-6">
             <button

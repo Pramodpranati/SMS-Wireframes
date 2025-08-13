@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calendar, FileText, User, GraduationCap, Clock } from 'lucide-react';
+import { Calendar, FileText, User, GraduationCap, Clock, Upload } from 'lucide-react';
 import { LeaveApplication } from '../../types/Leave';
 
 interface StudentLeaveFormProps {
@@ -20,11 +20,13 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const leaveTypes = [
+    const leaveTypes = [
+    { value: 'personal', label: 'Personal Leave', icon: '👤' },
     { value: 'sick', label: 'Sick Leave', icon: '🤒' },
-    { value: 'personal', label: 'Personal/Family', icon: '👨‍👩‍👧‍👦' },
+    { value: 'vacation', label: 'Vacation', icon: '🏖️' },
     { value: 'emergency', label: 'Emergency', icon: '🚨' },
-    { value: 'medical', label: 'Medical Appointment', icon: '🏥' },
+    { value: 'medical', label: 'Medical Leave', icon: '🏥' },
+    { value: 'family', label: 'Family Leave', icon: '👨‍👩‍👧‍👦' },
   ];
 
   const classes = [
@@ -71,7 +73,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       // Assign to class teacher based on class
       const classTeacherAssignment = {
@@ -83,7 +85,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
         // Add more class teacher mappings as needed
       };
 
-      const assignedTeacher = classTeacherAssignment[formData.className as keyof typeof classTeacherAssignment] 
+      const assignedTeacher = classTeacherAssignment[formData.className as keyof typeof classTeacherAssignment]
         || { id: 'TCH001', name: 'Mrs. Sarah Johnson' }; // Default assignment
 
       onSubmit({
@@ -121,15 +123,14 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             <User className="inline h-4 w-4 mr-1" />
-            Student Name
+            Name
           </label>
           <input
             type="text"
             value={formData.applicantName}
             onChange={(e) => setFormData({ ...formData, applicantName: e.target.value })}
-            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-              errors.applicantName ? 'border-red-500 ring-2 ring-red-200' : ''
-            }`}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.applicantName ? 'border-red-500 ring-2 ring-red-200' : ''
+              }`}
             placeholder="Enter student's full name"
           />
           {errors.applicantName && (
@@ -137,7 +138,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             <GraduationCap className="inline h-4 w-4 mr-1" />
             Class
@@ -157,27 +158,27 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
           {errors.className && (
             <p className="text-red-500 text-sm mt-1">{errors.className}</p>
           )}
+        </div> */}
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            <FileText className="inline h-4 w-4 mr-1" />
+            Staff ID/Admission No
+          </label>
+          <input
+            type="text"
+            value={formData.admissionNumber}
+            onChange={(e) => setFormData({ ...formData, admissionNumber: e.target.value })}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.admissionNumber ? 'border-red-500 ring-2 ring-red-200' : ''
+              }`}
+            placeholder="Enter admission number"
+          />
+          {errors.admissionNumber && (
+            <p className="text-red-500 text-sm mt-1">{errors.admissionNumber}</p>
+          )}
         </div>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          <FileText className="inline h-4 w-4 mr-1" />
-          Admission Number
-        </label>
-        <input
-          type="text"
-          value={formData.admissionNumber}
-          onChange={(e) => setFormData({ ...formData, admissionNumber: e.target.value })}
-          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-            errors.admissionNumber ? 'border-red-500 ring-2 ring-red-200' : ''
-          }`}
-          placeholder="Enter admission number"
-        />
-        {errors.admissionNumber && (
-          <p className="text-red-500 text-sm mt-1">{errors.admissionNumber}</p>
-        )}
-      </div>
 
       {/* Leave Type */}
       <div>
@@ -206,108 +207,204 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
           ))}
         </div>
       </div>
+      {/* <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          <FileText className="inline h-4 w-4 mr-1" />
+          Leave Type
+        </label>
+        <input
+          type="text"
+          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.applicantName ? 'border-red-500 ring-2 ring-red-200' : ''
+            }`}
+          placeholder="Enter leave type"
+        />
+        <select
+
+          className={`w-full px-3 py-2.5 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-200 ${errors.subject ? 'border-red-300' : 'border-gray-300'
+            }`}
+        >
+          <option>Sick / Medical Leave</option>
+          <option>Family Emergency</option>
+          <option>Personal Reasons</option>
+          <option>Religious Holiday / Observance</option>
+          <option>Marriage / Wedding Leave</option>
+          <option>Maternity / Paternity Leave</option>
+        </select>
+      </div> */}
 
       {/* Date Range */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 mb-2 ">
             <Calendar className="inline h-4 w-4 mr-1" />
             Start Date
+     
           </label>
           <input
             type="date"
             value={formData.startDate}
             onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
             min={new Date().toISOString().split('T')[0]}
-            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-              errors.startDate ? 'border-red-500 ring-2 ring-red-200' : ''
-            }`}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.startDate ? 'border-red-500 ring-2 ring-red-200' : ''
+              }`}
           />
           {errors.startDate && (
             <p className="text-red-500 text-sm mt-1">{errors.startDate}</p>
+            
           )}
+                 <div className='flex flex-row gap-5'>
+             <div className="flex gap-4 mt-3">
+              <label className="flex flex-row gap-2">
+              <input
+                type="radio"
+                name="startPeriod"
+                value="AM"
+                className="h-4 w-4 text-blue-600 border-gray-300"
+              />
+              FN
+            </label>
+            </div>
+             <div className="flex gap-4 mt-3">
+              <label className="flex flex-row gap-2">
+              <input
+                type="radio"
+                name="startPeriod"
+                value="AM"
+                className="h-4 w-4 text-blue-600 border-gray-300"
+              />
+              AN
+            </label>
+            </div>
+            </div>
+         
+
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              <Calendar className="inline h-4 w-4 mr-1" />
+              End Date
+              
+            </label>
+             
+            <input
+              type="date"
+              value={formData.endDate}
+              onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+              min={formData.startDate || new Date().toISOString().split('T')[0]}
+              className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.endDate ? 'border-red-500 ring-2 ring-red-200' : ''
+                }`}
+            />
+            {errors.endDate && (
+              <p className="text-red-500 text-sm mt-1">{errors.endDate}</p>
+            )}
+            <div className='flex flex-row gap-5'>
+             <div className="flex gap-4 mt-3">
+              <label className="flex flex-row gap-2">
+              <input
+                type="radio"
+                name="endPeriod"
+                value="AM"
+                className="h-4 w-4 text-blue-600 border-gray-300"
+              />
+              FN
+            </label>
+            </div>
+             <div className="flex gap-4 mt-3">
+              <label className="flex flex-row gap-2">
+              <input
+                type="radio"
+                name="endPeriod"
+                value="AM"
+                className="h-4 w-4 text-blue-600 border-gray-300"
+              />
+              AN
+            </label>
+            </div>
+            </div>
+          </div>
         </div>
 
+        {/* Reason */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            <Calendar className="inline h-4 w-4 mr-1" />
-            End Date
+            <FileText className="inline h-4 w-4 mr-1" />
+            Reason for Leave
           </label>
-          <input
-            type="date"
-            value={formData.endDate}
-            onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-            min={formData.startDate || new Date().toISOString().split('T')[0]}
-            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${
-              errors.endDate ? 'border-red-500 ring-2 ring-red-200' : ''
-            }`}
+          <textarea
+            value={formData.reason}
+            onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
+            rows={4}
+            className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${errors.reason ? 'border-red-500 ring-2 ring-red-200' : ''
+              }`}
+            placeholder="Please provide a detailed reason for your leave request..."
           />
-          {errors.endDate && (
-            <p className="text-red-500 text-sm mt-1">{errors.endDate}</p>
+          {errors.reason && (
+            <p className="text-red-500 text-sm mt-1">{errors.reason}</p>
           )}
         </div>
-      </div>
 
-      {/* Reason */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          <FileText className="inline h-4 w-4 mr-1" />
-          Reason for Leave
-        </label>
-        <textarea
-          value={formData.reason}
-          onChange={(e) => setFormData({ ...formData, reason: e.target.value })}
-          rows={4}
-          className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none ${
-            errors.reason ? 'border-red-500 ring-2 ring-red-200' : ''
-          }`}
-          placeholder="Please provide a detailed reason for your leave request..."
-        />
-        {errors.reason && (
-          <p className="text-red-500 text-sm mt-1">{errors.reason}</p>
-        )}
-      </div>
+        {/* Emergency Contact */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Emergency Contact (Optional)
+          </label>
+          <input
+            type="tel"
+            value={formData.emergencyContact}
+            onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+            placeholder="Parent/Guardian contact number"
+          />
+        </div>
+          <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Supporting Documents (Optional)</label>
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors duration-200">
+                  <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+                  <p className="text-sm text-gray-600 mb-2">Click to upload or drag and drop</p>
+                  <p className="text-xs text-gray-500">PDF, JPG, PNG up to 5MB</p>
+                  <input
+                    type="file"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    className="hidden"
+                    id="community-cert"
+                  />
+                  <label
+                    htmlFor="community-cert"
+                    className="inline-block mt-2 px-4 py-2 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-600 transition-colors duration-200"
+                  >
+                    Choose File
+                  </label>
+                
+                </div>
+              </div>
 
-      {/* Emergency Contact */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Emergency Contact (Optional)
-        </label>
-        <input
-          type="tel"
-          value={formData.emergencyContact}
-          onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
-          placeholder="Parent/Guardian contact number"
-        />
-      </div>
-
-      {/* Submit Button */}
-      <div className="flex justify-end space-x-4 pt-6 border-t">
-        <button
-          type="button"
-          onClick={() => setFormData({
-            applicantName: '',
-            className: '',
-            admissionNumber: '',
-            leaveType: 'sick',
-            startDate: '',
-            endDate: '',
-            reason: '',
-            emergencyContact: '',
-          })}
-          className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
-        >
-          Clear Form
-        </button>
-        <button
-          type="submit"
-          className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
-        >
-          <Clock className="h-4 w-4" />
-          <span>Submit Application</span>
-        </button>
-      </div>
+        {/* Submit Button */}
+        <div className="flex justify-end space-x-4 pt-6 border-t">
+          <button
+            type="button"
+            onClick={() => setFormData({
+              applicantName: '',
+              className: '',
+              admissionNumber: '',
+              leaveType: 'sick',
+              startDate: '',
+              endDate: '',
+              reason: '',
+              emergencyContact: '',
+            })}
+            className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+          >
+            Clear Form
+          </button>
+          <button
+            type="submit"
+            className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center space-x-2"
+          >
+            <Clock className="h-4 w-4" />
+            <span>Submit Application</span>
+          </button>
+        </div>
     </form>
   );
 };

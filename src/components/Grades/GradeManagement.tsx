@@ -149,13 +149,34 @@ export const GradeManagement: React.FC = () => {
             <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Grade Name</label>
-                <input
+                {/* <input
                   type="text"
                   value={newGrade.name}
                   onChange={(e) => setNewGrade({ name: e.target.value })}
                   placeholder="e.g., Grade 1, Grade 2"
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+                /> */}
+                <select
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  defaultValue="A"
+                >
+                  <option>Select Grade</option>
+                  <option>Nursery</option>
+                  <option>LKG</option>
+                  <option>UKG</option>
+                  <option>Grade I</option>
+                  <option>Grade II</option>
+                  <option>Grade III</option>
+                  <option>Grade IV</option>
+                  <option>Grade V</option>
+                  <option>Grade VI</option>
+                  <option>Grade VII</option>
+                  <option>Grade VIII</option>
+                  <option>Grade IX</option>
+                  <option>Grade X</option>
+                  <option>Grade XI</option>
+                  <option>Grade XII</option>
+                </select>
               </div>
 
             </div>
@@ -169,7 +190,7 @@ export const GradeManagement: React.FC = () => {
                     className="flex items-center gap-2 px-6 py-2   bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <Plus className="w-4 h-4" />
-                    Add 
+                    Add
                   </button>
                 </div>
                 {Array.from({ length: previoushistoryLength }).map((_, i) => (
@@ -190,7 +211,7 @@ export const GradeManagement: React.FC = () => {
                           <option value="room104">D</option>
                           <option value="room105">E</option>
                           <option value="room105">F</option>
-                         
+
                         </select>
                       </div>
 
@@ -236,7 +257,7 @@ export const GradeManagement: React.FC = () => {
                         <option >Prof. Michael Chen</option>
                         <option >Ms. Emily Rodriguez</option>
                         <option >Mr. David Wilson</option>
-                        
+
                       </select>
 
                     </div>
@@ -266,52 +287,55 @@ export const GradeManagement: React.FC = () => {
             </div>
           </div>
         </div>
-      )}
+      )
+      }
 
       {/* Add Section Modal */}
-      {showAddSectionModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Add New Section</h3>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Section Name</label>
-                <input
-                  type="text"
-                  value={newSection.name}
-                  onChange={(e) => setNewSection({ ...newSection, name: e.target.value })}
-                  placeholder="e.g., A, B, C"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+      {
+        showAddSectionModal && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div className="bg-white rounded-lg p-6 w-full max-w-md">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">Add New Section</h3>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Section Name</label>
+                  <input
+                    type="text"
+                    value={newSection.name}
+                    onChange={(e) => setNewSection({ ...newSection, name: e.target.value })}
+                    placeholder="e.g., A, B, C"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Room Number</label>
+                  <input
+                    type="text"
+                    value={newSection.roomNumber}
+                    onChange={(e) => setNewSection({ ...newSection, roomNumber: e.target.value })}
+                    placeholder="e.g., 101, 102"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Room Number</label>
-                <input
-                  type="text"
-                  value={newSection.roomNumber}
-                  onChange={(e) => setNewSection({ ...newSection, roomNumber: e.target.value })}
-                  placeholder="e.g., 101, 102"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+              <div className="flex items-center justify-end space-x-3 mt-6">
+                <button
+                  onClick={() => setShowAddSectionModal(false)}
+                  className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={handleAddSection}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                >
+                  Add Section
+                </button>
               </div>
-            </div>
-            <div className="flex items-center justify-end space-x-3 mt-6">
-              <button
-                onClick={() => setShowAddSectionModal(false)}
-                className="px-4 py-2 text-gray-600 hover:text-gray-800"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleAddSection}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-              >
-                Add Section
-              </button>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )
+      }
+    </div >
   );
 };

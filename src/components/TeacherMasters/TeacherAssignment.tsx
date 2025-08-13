@@ -139,10 +139,10 @@ const TeacherAssignment: React.FC = () => {
 
         // Initialize sample grades
         const sampleGrades: Grade[] = [
-            { id: '1', name: 'Grade 9', level: 9, sections: ['A', 'B', 'C'] },
-            { id: '2', name: 'Grade 10', level: 10, sections: ['A', 'B', 'C', 'D'] },
-            { id: '3', name: 'Grade 11', level: 11, sections: ['A', 'B'] },
-            { id: '4', name: 'Grade 12', level: 12, sections: ['A', 'B'] }
+            { id: '1', name: 'Grade IX', level: 9, sections: ['A', 'B', 'C'] },
+            { id: '2', name: 'Grade X', level: 10, sections: ['A', 'B', 'C', 'D'] },
+            { id: '3', name: 'Grade XI', level: 11, sections: ['A', 'B'] },
+            { id: '4', name: 'Grade XII', level: 12, sections: ['A', 'B'] }
         ];
 
         // Initialize sample assignments

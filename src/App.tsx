@@ -17,6 +17,7 @@ import { TimeTableManagement } from './components/TimeTable/TimeTableManagement'
 import { UserManagement } from './components/Users/UserManagement';
 import { AuthProvider } from './contexts/AuthContext';
 import { SchoolProvider } from './contexts/SchoolContext';
+import { ExamManagement } from './components/ExamManagement';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -56,6 +57,8 @@ function App() {
         return <TeacherAssignment />;
       case 'leave':
         return <LeaveManagement />;
+        case 'exam':
+        return <ExamManagement />;
       case 'admissiondashboard':
         return <AdmissionDashboard />;
       case 'specialclass':
