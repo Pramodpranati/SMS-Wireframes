@@ -82,19 +82,25 @@ const navigationItems: NavigationItem[] = [
     id: 'leave',
     label: 'Leave Management',
     icon: 'UserCheck',
-    roles: ['system_admin', 'management', 'teacher','student', 'parent']
+    roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
     id: 'exam',
     label: 'Exam Management',
     icon: 'UserCheck',
-    roles: ['system_admin', 'management', 'teacher','student', 'parent']
+    roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
     id: 'teachersassignment',
     label: 'Teachers Assignment',
     icon: 'UserCheck',
     roles: ['system_admin', 'management', 'teacher']
+  },
+  {
+    id: 'eventmanagement',
+    label: 'Event Management',
+    icon: 'Settings',
+    roles: ['system_admin', 'management']
   },
   {
     id: 'settings',

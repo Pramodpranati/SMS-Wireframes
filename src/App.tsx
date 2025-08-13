@@ -18,6 +18,7 @@ import { UserManagement } from './components/Users/UserManagement';
 import { AuthProvider } from './contexts/AuthContext';
 import { SchoolProvider } from './contexts/SchoolContext';
 import { ExamManagement } from './components/ExamManagement';
+import { EventManagement } from './components/EventManagement';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -57,12 +58,14 @@ function App() {
         return <TeacherAssignment />;
       case 'leave':
         return <LeaveManagement />;
-        case 'exam':
+      case 'exam':
         return <ExamManagement />;
       case 'admissiondashboard':
         return <AdmissionDashboard />;
       case 'specialclass':
         return <SpecialClassManagement />
+      case 'eventmanagement':
+        return <EventManagement />
       default:
         return <Dashboard />;
     }
