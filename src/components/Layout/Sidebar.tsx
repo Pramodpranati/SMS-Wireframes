@@ -7,7 +7,8 @@ import {
   BookOpen,
   GraduationCap,
   Clock,
-  School
+  School,
+  CalendarDays
 } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { NavigationItem } from '../../types';
@@ -99,7 +100,7 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'eventmanagement',
     label: 'Event Management',
-    icon: 'Settings',
+    icon: 'CalendarDays',
     roles: ['system_admin', 'management']
   },
   {
@@ -118,7 +119,8 @@ const iconMap = {
   BookOpen,
   Clock,
   UserCheck,
-  Settings
+  Settings,
+  CalendarDays
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {

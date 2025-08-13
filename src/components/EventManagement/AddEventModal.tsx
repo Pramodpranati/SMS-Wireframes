@@ -1,6 +1,6 @@
+import { AlertCircle, Calendar, Clock, MapPin, Users, X } from 'lucide-react';
 import React, { useState } from 'react';
-import { X, Calendar, Clock, MapPin, Users, AlertCircle } from 'lucide-react';
-import { Event, EventTarget, EventCategory, EventPriority } from '../../types/Event';
+import { Event, EventCategory, EventPriority, EventTarget } from '../../types/Event';
 
 interface AddEventModalProps {
   onClose: () => void;
@@ -49,7 +49,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -89,7 +89,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
           {/* Basic Information */}
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Basic Information</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Event Title
@@ -98,9 +98,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                 type="text"
                 value={formData.title}
                 onChange={(e) => handleInputChange('title', e.target.value)}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.title ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.title ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="Enter event title"
               />
               {errors.title && (
@@ -119,9 +118,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                 value={formData.description}
                 onChange={(e) => handleInputChange('description', e.target.value)}
                 rows={3}
-                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                  errors.description ? 'border-red-300' : 'border-gray-300'
-                }`}
+                className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.description ? 'border-red-300' : 'border-gray-300'
+                  }`}
                 placeholder="Enter event description"
               />
               {errors.description && (
@@ -155,9 +153,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                   type="text"
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.location ? 'border-red-300' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.location ? 'border-red-300' : 'border-gray-300'
+                    }`}
                   placeholder="Enter location"
                 />
                 {errors.location && (
@@ -192,9 +189,8 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                   type="time"
                   value={formData.endTime}
                   onChange={(e) => handleInputChange('endTime', e.target.value)}
-                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                    errors.endTime ? 'border-red-300' : 'border-gray-300'
-                  }`}
+                  className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.endTime ? 'border-red-300' : 'border-gray-300'
+                    }`}
                 />
                 {errors.endTime && (
                   <p className="mt-1 text-sm text-red-600 flex items-center gap-1">
@@ -209,7 +205,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
           {/* Target Audience */}
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Target Audience</h3>
-            
+
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 <Users className="w-4 h-4 inline mr-1" />
@@ -221,7 +217,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
                 <option value="whole-school">Whole School</option>
-                <option value="students">Students Only</option>
+                <option value="students">Student Only</option>
                 <option value="teachers">Teachers Only</option>
                 <option value="individuals">Specific Individuals</option>
               </select>
@@ -229,40 +225,45 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
 
             {formData.target === 'students' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select Student Groups
+                <label className="text-sm font-medium text-gray-700 mb-2 flex flex-row justify-between items-center">
+                  <span>Select Student Groups</span>
+                  <label className="flex items-center space-x-2">
+                    <input type="checkbox" name="" id="" /><span className="text-sm text-gray-700">Select all</span>
+                  </label>
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 
+                  {['Grade 1', 'Grade 2', 'Grade 3', 'Grade 4', 'Grade 5', 'Grade 6',
                     'Grade 7', 'Grade 8', 'Grade 9', 'Grade 10', 'Grade 11', 'Grade 12'].map(grade => (
-                    <label key={grade} className="flex items-center space-x-2">
-                      <input
-                        type="checkbox"
-                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        onChange={(e) => {
-                          const gradeId = grade.toLowerCase().replace(' ', '-');
-                          if (e.target.checked) {
-                            handleInputChange('targetIds', [...formData.targetIds, gradeId]);
-                          } else {
-                            handleInputChange('targetIds', formData.targetIds.filter(id => id !== gradeId));
-                          }
-                        }}
-                      />
-                      <span className="text-sm text-gray-700">{grade}</span>
-                    </label>
-                  ))}
+                      <label key={grade} className="flex items-center space-x-2">
+                        <input
+                          type="checkbox"
+                          className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          onChange={(e) => {
+                            const gradeId = grade.toLowerCase().replace(' ', '-');
+                            if (e.target.checked) {
+                              handleInputChange('targetIds', [...formData.targetIds, gradeId]);
+                            } else {
+                              handleInputChange('targetIds', formData.targetIds.filter(id => id !== gradeId));
+                            }
+                          }}
+                        />
+                        <span className="text-sm text-gray-700">{grade}</span>
+                      </label>
+                    ))}
                 </div>
               </div>
             )}
 
             {formData.target === 'teachers' && (
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Select Teacher Departments
+                <label className="text-sm font-medium text-gray-700 mb-2 flex flex-row justify-between items-center">
+                  <span>Select Teacher Departments</span>
+                  <label className="flex items-center space-x-2">
+                    <input type="checkbox" name="" id="" /><span className="text-sm text-gray-700">Select all</span>
+                  </label>
                 </label>
                 <div className="grid grid-cols-2 gap-2">
-                  {['Mathematics', 'Science', 'English', 'Social Studies', 'Arts', 'Physical Education',
-                    'Computer Science', 'Languages'].map(dept => (
+                  {['Dr. Sarah Johnson - EMP001', 'David Chen - EMP002', 'John - EMP003', 'Jones - EMP004'].map(dept => (
                     <label key={dept} className="flex items-center space-x-2">
                       <input
                         type="checkbox"
@@ -303,7 +304,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
           {/* Event Properties */}
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Event Properties</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
