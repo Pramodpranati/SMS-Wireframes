@@ -19,6 +19,9 @@ import { AuthProvider } from './contexts/AuthContext';
 import { SchoolProvider } from './contexts/SchoolContext';
 import { ExamManagement } from './components/ExamManagement';
 import { EventManagement } from './components/EventManagement';
+import NotificationManagement from './components/NotificationManagement/Notification';
+import MessagesPage from './components/Messages/MessagesPage';
+import MarksheetManagement from './components/Marksheet/MarksheetManagement';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -56,8 +59,14 @@ function App() {
         return <StudentManagement />;
       case 'teachersassignment':
         return <TeacherAssignment />;
+         case 'marksheetmanagement':
+        return <MarksheetManagement />;
       case 'leave':
         return <LeaveManagement />;
+        case 'messageinput':
+        return <MessagesPage/>;
+         case 'notificationmanager':
+        return <NotificationManagement />;
       case 'exam':
         return <ExamManagement />;
       case 'admissiondashboard':

@@ -96,9 +96,9 @@ export const Settings: React.FC = () => {
               <label className="block text-sm font-medium text-gray-700 mb-2">School Name</label>
               <input
                 type="text"
-                value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                 placeholder="Enter School Name"
               />
             </div>
 
@@ -117,7 +117,7 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter House No/Building Name"
+                  placeholder="Enter Email"
                 />
               </div>
 
@@ -126,7 +126,7 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter House No/Building Name"
+                  placeholder="Enter Phone No"
                 />
               </div>
             </div>
@@ -152,7 +152,6 @@ export const Settings: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-700 mb-2">Locality *</label>
                 <input
                   type="text"
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter locality"
                 />
@@ -163,7 +162,6 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   required
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter city"
                 />
@@ -173,9 +171,8 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   required
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter city"
+                  placeholder="Enter District"
                 />
               </div>
               <div className='flex-1'>
@@ -183,9 +180,8 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   required
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter city"
+                  placeholder="Enter State"
                 />
               </div>
               <div className='flex-1'>
@@ -193,9 +189,8 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   required
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter city"
+                  placeholder="Enter Country"
                 />
               </div>
 
@@ -204,9 +199,8 @@ export const Settings: React.FC = () => {
                 <input
                   type="text"
                   required
-
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="Enter city"
+                  placeholder="Enter Zipcode"
                 />
               </div>
             </div>
@@ -595,8 +589,8 @@ export const Settings: React.FC = () => {
             </ul>
           </div>
         </div>
-     
-         <div className='bg-white rounded-lg shadow-md p-6'>
+
+        <div className='bg-white rounded-lg shadow-md p-6'>
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row items-center space-x-3 mb-6">
               <UserCog className="w-6 h-6 text-blue-600" />
@@ -639,9 +633,73 @@ export const Settings: React.FC = () => {
             </ul>
           </div>
         </div>
-</div>
-
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Event Category</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li value="academic">Academic</li>
+              <li value="event">Event</li>
+              <li value="training">Training</li>
+              <li value="meeting">Meeting</li>
+              <li value="holiday">Holiday</li>
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Exam Title</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Slip/Unit Test</li>
+              <li>Mid Term I</li>
+              <li>Mid Term II</li>
+              <li>Mid Term III</li>
+              <li>Quarterly Exam</li>
+              <li>Half-Yearly Exam</li>
+              <li>Annual Exam</li>
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Event Target Audience</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li>Whole School</li>
+              <li>Student Only</li>
+              <li>Teachers Only</li>
+              <li>Specific Individuals</li>
+            </ul>
+          </div>
+        </div>
       </div>
-   
+
+    </div>
+
   );
 };

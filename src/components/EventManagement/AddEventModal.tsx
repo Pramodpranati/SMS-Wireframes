@@ -1,4 +1,4 @@
-import { AlertCircle, Calendar, Clock, MapPin, Users, X } from 'lucide-react';
+import { AlertCircle, Calendar, Clock, Link, MapPin, Users, X } from 'lucide-react';
 import React, { useState } from 'react';
 import { Event, EventCategory, EventPriority, EventTarget } from '../../types/Event';
 
@@ -134,7 +134,19 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <Calendar className="w-4 h-4 inline mr-1" />
-                  Date
+                  Start Date
+                </label>
+                <input
+                  type="date"
+                  value={formData.date}
+                  onChange={(e) => handleInputChange('date', e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <Calendar className="w-4 h-4 inline mr-1" />
+                  End Date
                 </label>
                 <input
                   type="date"
@@ -144,13 +156,17 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                 />
               </div>
 
+
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   <MapPin className="w-4 h-4 inline mr-1" />
                   Location
                 </label>
                 <input
-                  type="text"
+                  type='text'
                   value={formData.location}
                   onChange={(e) => handleInputChange('location', e.target.value)}
                   className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.location ? 'border-red-300' : 'border-gray-300'
@@ -164,7 +180,33 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                   </p>
                 )}
               </div>
-            </div>
+               <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Category
+                </label>
+                <select
+                  value={formData.category}
+                  onChange={(e) => handleInputChange('category', e.target.value as EventCategory)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="academic">Academic</option>
+                  <option value="event">Event</option>
+                  <option value="training">Training</option>
+                  <option value="meeting">Meeting</option>
+                  <option value="holiday">Holiday</option>
+                </select>
+              </div>
+              </div>
+
+              <div>
+                <iframe
+                  title="Google Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d55013.07304196852!2d80.1342680548261!3d13.013544080038772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525e1f5da86397%3A0x21092f216ee26e47!2sChennai%20International%20Airport!5e0!3m2!1sen!2sin!4v1755068132976!5m2!1sen!2sin" width="600" height="150" 
+                 
+                  
+                ></iframe>
+              </div>
+            
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -302,7 +344,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
           </div>
 
           {/* Event Properties */}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Event Properties</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -338,7 +380,7 @@ const AddEventModal: React.FC<AddEventModalProps> = ({ onClose, onAdd, selectedD
                 </select>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Form Actions */}
           <div className="flex items-center justify-end space-x-4 pt-6 border-t border-gray-200">

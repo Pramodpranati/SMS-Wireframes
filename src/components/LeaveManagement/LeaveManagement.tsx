@@ -241,9 +241,8 @@ const LeaveManagement: React.FC = () => {
                 color="border-l-red-500"
               />
             </div>
-
             {/* Filters and Search */}
-            <div className="bg-white rounded-xl shadow-md p-6 mb-6">
+            {/* <div className="bg-white rounded-xl shadow-md p-6 mb-6">
               <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                 <div className="flex items-center space-x-4 w-full sm:w-auto">
                   <div className="relative flex-1 sm:flex-initial">
@@ -283,7 +282,7 @@ const LeaveManagement: React.FC = () => {
                   <span>New Application</span>
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Applications List */}
             <div className="space-y-4">

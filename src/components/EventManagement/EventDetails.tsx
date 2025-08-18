@@ -107,6 +107,7 @@ const EventDetails: React.FC<EventDetailsProps> = ({ event, onEdit, onDelete, on
               <span className="text-gray-600">Date:</span>
               <span className="font-medium text-gray-900">{formatDate(event.date)}</span>
             </div>
+            
 
             <div className="flex items-center gap-3 text-sm">
               <Clock className="w-4 h-4 text-gray-400" />

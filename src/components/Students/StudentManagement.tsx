@@ -33,6 +33,7 @@ const StudentManagement: React.FC = () => {
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
     const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
     const [showDropdown, setShowDropdown] = useState<string | null>(null);
+    const [openAdmissionNo, setOpenAdmissionNo] = useState(false)
 
 
     // Mock data - in a real app, this would come from an API
@@ -294,6 +295,7 @@ const StudentManagement: React.FC = () => {
                             value={formData.lastName}
                             onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            placeholder='Enter New Student[Application No]'
 
                         />
                     </div>
@@ -322,6 +324,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.firstName}
                                 onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter First Name '
 
                             />
                         </div>
@@ -332,6 +335,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.lastName}
                                 onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Last Name'
 
                             />
                         </div>
@@ -342,16 +346,18 @@ const StudentManagement: React.FC = () => {
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Email'
 
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
                             <input
                                 type="tel"
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Phone Number'
                             />
                         </div>
                         <div>
@@ -372,6 +378,7 @@ const StudentManagement: React.FC = () => {
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
 
                             >
+                                <option value="Select Gender">Select Gender</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
@@ -384,6 +391,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.address}
                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter House no/Building name'
 
                             />
                         </div>
@@ -394,7 +402,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.address}
                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-
+                                placeholder='Enter Street'
                             />
                         </div>
                         <div>
@@ -404,6 +412,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.address}
                                 onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Locality'
 
                             />
                         </div>
@@ -414,6 +423,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.city}
                                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter City'
 
                             />
                         </div>
@@ -424,6 +434,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.city}
                                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter District'
 
                             />
                         </div>
@@ -434,6 +445,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.state}
                                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter State'
 
                             />
                         </div>
@@ -444,6 +456,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.city}
                                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Landmark'
 
                             />
                         </div>
@@ -454,6 +467,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.zipCode}
                                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter ZIP Code'
                             />
                         </div>
                     </div>
@@ -469,6 +483,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianName}
                                 onChange={(e) => setFormData({ ...formData, guardianName: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Parent Name '
 
                             />
                         </div>
@@ -479,6 +494,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianPhone}
                                 onChange={(e) => setFormData({ ...formData, guardianPhone: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Parent Phone'
 
                             />
                         </div>
@@ -489,6 +505,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianEmail}
                                 onChange={(e) => setFormData({ ...formData, guardianEmail: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Parent Email'
                             />
                         </div>
                         <div>
@@ -498,6 +515,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.emergencyContact}
                                 onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Emergency Contact'
 
                             />
                         </div>
@@ -514,6 +532,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianName}
                                 onChange={(e) => setFormData({ ...formData, guardianName: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Guardian Name'
 
                             />
                         </div>
@@ -524,6 +543,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianPhone}
                                 onChange={(e) => setFormData({ ...formData, guardianPhone: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Guardian Phone '
 
                             />
                         </div>
@@ -534,6 +554,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.guardianEmail}
                                 onChange={(e) => setFormData({ ...formData, guardianEmail: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Guardian Email'
                             />
                         </div>
                         <div>
@@ -543,6 +564,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.emergencyContact}
                                 onChange={(e) => setFormData({ ...formData, emergencyContact: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Emergency Contact'
 
                             />
                         </div>
@@ -558,7 +580,6 @@ const StudentManagement: React.FC = () => {
                                 value={formData.class}
                                 onChange={(e) => setFormData({ ...formData, class: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-
                             >
                                 <option value="">Select Class</option>
                                 <option value="9th">9th Grade</option>
@@ -588,6 +609,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.rollNumber}
                                 onChange={(e) => setFormData({ ...formData, rollNumber: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Roll Number'
 
                             />
                         </div>
@@ -598,6 +620,7 @@ const StudentManagement: React.FC = () => {
                                 value={formData.admissionDate}
                                 onChange={(e) => setFormData({ ...formData, admissionDate: e.target.value })}
                                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                placeholder='Enter Admission Date'
 
                             />
                         </div>
@@ -691,6 +714,26 @@ const StudentManagement: React.FC = () => {
                         </div>
                     </div>
 
+                    {
+                        openAdmissionNo && (
+                            <div className="bg-gray-100 flex items-center justify-center">
+                                <div className="bg-green-100 border border-green-400 text-green-800 px-6 py-5 rounded-lg shadow-md max-w-xl w-full">
+                                    <h2 className="text-lg font-semibold mb-2">🎉 Admission Form Submitted Successfully!</h2>
+                                    <p className="mb-1">
+                                        You will receive a confirmation email shortly.
+                                    </p>
+                                    <p className="mb-1 font-medium">
+                                        Your <span className="font-semibold">Application Form ID</span> is:
+                                        <span className="text-green-900 bg-green-200 px-2 py-0.5 rounded font-mono">AP2501</span>
+                                    </p>
+                                    <p className="mt-2">
+                                        You can use this ID to track the status of your application.
+                                    </p>
+                                </div>
+                            </div>
+                        )
+                    }
+
                 </div>
 
                 <div className="flex justify-end space-x-2 pt-6">
@@ -702,7 +745,7 @@ const StudentManagement: React.FC = () => {
                         Cancel
                     </button>
                     <button
-                        onClick={() => setIsAddModalOpen(true)}
+                        onClick={() => {setIsAddModalOpen(true), setOpenAdmissionNo(true)}}
                         type="button"
                         className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none" aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-basic-modal" data-hs-overlay="#hs-basic-modal"
                     >
@@ -819,6 +862,7 @@ const StudentManagement: React.FC = () => {
                         </div>
                         <div>
                             <span className="font-medium">Roll Number:</span> {student.rollNumber}
+
                         </div>
                         <div>
                             <span className="font-medium">Admission Date:</span> {new Date(student.admissionDate).toLocaleDateString()}

@@ -616,6 +616,7 @@ const TeacherModal: React.FC<{
                       personalInfo: { ...formData.personalInfo, firstName: e.target.value }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter First Name"
                   />
                 </div>
 
@@ -632,6 +633,7 @@ const TeacherModal: React.FC<{
                       personalInfo: { ...formData.personalInfo, lastName: e.target.value }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter Last Name"
                   />
                 </div>
 
@@ -648,6 +650,7 @@ const TeacherModal: React.FC<{
                       personalInfo: { ...formData.personalInfo, email: e.target.value }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder='Enter Email'
                   />
                 </div>
 
@@ -664,6 +667,7 @@ const TeacherModal: React.FC<{
                       personalInfo: { ...formData.personalInfo, phone: e.target.value }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder='Enter Phone No'
                   />
                 </div>
 
@@ -694,6 +698,7 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
+                    <option value="Select Gender">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
@@ -722,6 +727,8 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter House No/Building Name"
+
                       />
                     </div>
                     <div >
@@ -739,6 +746,8 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter Street"
+
                       />
                     </div>
                     <div >
@@ -756,6 +765,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter locality"
                       />
                     </div>
 
@@ -774,6 +784,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                         placeholder="Enter city"
                       />
                     </div>
 
@@ -792,6 +803,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter District"
                       />
                     </div>
 
@@ -810,6 +822,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter State"
                       />
                     </div>
 
@@ -828,6 +841,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter ZIP Code"
                       />
                     </div>
 
@@ -835,6 +849,7 @@ const TeacherModal: React.FC<{
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Country
                       </label>
+
                       <select
                         value={formData.personalInfo.gender}
                         // onChange={(e) => setFormData({
@@ -842,7 +857,9 @@ const TeacherModal: React.FC<{
                         //   personalInfo: { ...formData.personalInfo, gender: e.target.value as 'male' | 'female' | 'other' }
                         // })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        
                       >
+                        <option value="Select Country">Select Country</option>
                         <option value="male">India</option>
                         <option value="female">USA</option>
                         <option value="other">Russia</option>
@@ -869,6 +886,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder='Enter Contact Name '
                       />
                     </div>
 
@@ -887,12 +905,13 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder='Enter Relationship'
                       />
                     </div>
 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone
+                        Phone Number
                       </label>
                       <input
                         type="tel"
@@ -905,6 +924,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder='Enter Phone Number'
                       />
                     </div>
 
@@ -923,6 +943,7 @@ const TeacherModal: React.FC<{
                           }
                         })}
                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder='Enter Email'
                       />
                     </div>
                   </div>
@@ -945,7 +966,7 @@ const TeacherModal: React.FC<{
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   >
-                    <option value="">Select</option>
+                    <option value="">Select Designation </option>
                     {Roles.map(dept => (
                       <option key={dept} value={dept}>{dept}</option>
                     ))}
@@ -965,6 +986,7 @@ const TeacherModal: React.FC<{
                       professionalInfo: { ...formData.professionalInfo, employeeId: e.target.value }
                     })}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder='Enter Employee Code '
                   />
                 </div>
 
@@ -1222,6 +1244,7 @@ const TeacherModal: React.FC<{
                             <input
                               type="text"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder='Enter Passed Out Year'
                             />
                           </div>
                           <div className='flex-1'>
@@ -1269,6 +1292,7 @@ const TeacherModal: React.FC<{
                             <input
                               type="text"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder='Enter Organization Name'
                             />
                           </div>
                           <div className='flex-1'>
@@ -1278,6 +1302,7 @@ const TeacherModal: React.FC<{
                             <input
                               type="text"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder='Enter Designation'
                             />
                           </div>
                           <div className='flex-1'>
@@ -1322,7 +1347,7 @@ const TeacherModal: React.FC<{
               <div className="space-y-8">
                 <h3 className="text-lg font-medium text-gray-900 mb-4">Uploaded Attachments</h3>
                 <div>
-                 <h4 className="text-blue-600 hover:underline">1. UG Certificate </h4>
+                  <h4 className="text-blue-600 hover:underline">1. UG Certificate </h4>
                   <h4 className="text-blue-600 hover:underline">2. PG Certificate</h4>
                   <h4 className="text-blue-600 hover:underline">3. Professional Certificate</h4>
                   <h4 className="text-blue-600 hover:underline">4. Experience Letter</h4>
@@ -1351,6 +1376,7 @@ const TeacherModal: React.FC<{
                             <input
                               type="text"
                               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                              placeholder='Enter Name'
                             />
                           </div>
                           <div className='flex-1'>

@@ -35,14 +35,14 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.title || !formData.subject || !formData.date || !formData.startTime || !formData.endTime) {
       alert('Please fill in all required fields');
       return;
     }
 
     const duration = calculateDuration(formData.startTime!, formData.endTime!);
-    
+
     onSubmit({
       ...formData as CreateExamData,
       duration,
@@ -78,8 +78,8 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
   };
 
   const handleTargetSelection = (targetId: string) => {
-    setSelectedTargets(prev => 
-      prev.includes(targetId) 
+    setSelectedTargets(prev =>
+      prev.includes(targetId)
         ? prev.filter(id => id !== targetId)
         : [...prev, targetId]
     );
@@ -94,7 +94,7 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
           studentCount: grade.sections.reduce((sum, section) => sum + section.studentCount, 0)
         }));
       case 'section':
-        return grades.flatMap(grade => 
+        return grades.flatMap(grade =>
           grade.sections.map(section => ({
             id: section.id,
             name: `${grade.name} - ${section.name}`,
@@ -105,7 +105,7 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
         return [{
           id: 'all',
           name: 'Entire School',
-          studentCount: grades.reduce((sum, grade) => 
+          studentCount: grades.reduce((sum, grade) =>
             sum + grade.sections.reduce((sectionSum, section) => sectionSum + section.studentCount, 0), 0
           )
         }];
@@ -136,34 +136,56 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
               <BookOpen className="w-5 h-5 mr-2 text-blue-600" />
               Basic Information
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Exam Title *
                 </label>
-                <input
+                {/* <input
                   type="text"
                   value={formData.title || ''}
                   onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., Mid-Term Mathematics Exam"
                   required
-                />
+                /> */}
+                <select
+
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="split_unit_test">Select Title</option>
+                  <option value="split_unit_test">Slip/Unit Test</option>
+                  <option value="mid_term_1">Mid Term I</option>
+                  <option value="mid_term_2">Mid Term II</option>
+                  <option value="mid_term_3">Mid Term III</option>
+                  <option value="quarterly">Quarterly Exam</option>
+                  <option value="half_yearly">Half-Yearly Exam</option>
+                  <option value="annual">Annual Exam</option>
+                </select>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Subject *
                 </label>
-                <input
+                {/* <input
                   type="text"
                   value={formData.subject || ''}
                   onChange={(e) => setFormData(prev => ({ ...prev, subject: e.target.value }))}
                   className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   placeholder="e.g., Mathematics"
                   required
-                />
+                /> */}
+                <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                  <option value="english">Select subject</option>
+                  <option value="english">English</option>
+                  <option value="mathematics">Mathematics</option>
+                  <option value="hindi">Hindi</option>
+                  <option value="social_science">Social Science</option>
+                  <option value="science">Science</option>
+                </select>
               </div>
             </div>
 
@@ -187,7 +209,7 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
               <Calendar className="w-5 h-5 mr-2 text-blue-600" />
               Schedule
             </h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -242,7 +264,7 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
           {/* Marks */}
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-900">Marks Configuration</h3>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -279,7 +301,22 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
               <Users className="w-5 h-5 mr-2 text-blue-600" />
               Assignment
             </h3>
-            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Grade *
+              </label>
+             
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="">Select Grade</option>
+                <option value="Grade I">Grade I</option>
+                <option value="Grade II">Grade II</option>
+                <option value="Grade III">Grade III</option>
+                <option value="Grade IV">Grade IV</option>
+                <option value="Grade V">Grade V</option>
+              </select>
+            </div>
+            {/* 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Assign to:
@@ -343,7 +380,7 @@ const CreateExamModal: React.FC<CreateExamModalProps> = ({
                   This exam will be assigned to all students in the school.
                 </p>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Instructions */}

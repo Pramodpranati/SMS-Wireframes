@@ -1,17 +1,28 @@
-import React from 'react';
 import {
-  Users,
-  UserRoundPlus,
-  UserCheck,
-  Settings,
+  Bell,
+  BookMarked,
   BookOpen,
-  GraduationCap,
+  BookOpenCheck,
+  CalendarClock,
+  CalendarDays,
+  CircleUserRound,
   Clock,
+  GraduationCap,
+  Hourglass,
+  MessagesSquare,
+  NotebookPen,
   School,
-  CalendarDays
+  Settings,
+  UserCheck,
+  UserRoundPlus,
+  Users,
+  MessageSquareText,
+  SquarePen
 } from 'lucide-react';
+import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import { NavigationItem } from '../../types';
+
 
 interface SidebarProps {
   activeTab: string;
@@ -46,7 +57,7 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'teachers',
     label: 'Staffs Management',
-    icon: 'UserCheck',
+    icon: 'CircleUserRound',
     roles: ['system_admin', 'management']
   },
   {
@@ -70,37 +81,55 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'specialclass',
     label: 'Special Class Management',
-    icon: 'Clock',
+    icon: 'Hourglass',
     roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
     id: 'attendance',
     label: 'Attendance',
-    icon: 'UserCheck',
+    icon: 'BookOpenCheck',
+    roles: ['system_admin', 'management', 'teacher']
+  },
+   {
+    id: 'marksheetmanagement',
+    label: 'Marksheet Management',
+    icon: 'SquarePen',
     roles: ['system_admin', 'management', 'teacher']
   },
   {
     id: 'leave',
     label: 'Leave Management',
-    icon: 'UserCheck',
+    icon: 'CalendarClock',
     roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
     id: 'exam',
     label: 'Exam Management',
-    icon: 'UserCheck',
+    icon: 'NotebookPen',
     roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
     id: 'teachersassignment',
     label: 'Teachers Assignment',
-    icon: 'UserCheck',
+    icon: 'BookMarked',
     roles: ['system_admin', 'management', 'teacher']
   },
   {
     id: 'eventmanagement',
     label: 'Event Management',
     icon: 'CalendarDays',
+    roles: ['system_admin', 'management']
+  },
+  {
+    id: 'notificationmanager',
+    label: 'Notification',
+    icon: 'Bell',
+    roles: ['system_admin', 'management']
+  },
+   {
+    id: 'messageinput',
+    label: 'Message',
+    icon: 'MessageSquareText',
     roles: ['system_admin', 'management']
   },
   {
@@ -120,7 +149,17 @@ const iconMap = {
   Clock,
   UserCheck,
   Settings,
-  CalendarDays
+  CalendarDays,
+  MessagesSquare,
+  NotebookPen,
+  Bell,
+  CircleUserRound,
+  BookOpenCheck,
+  BookMarked,
+  Hourglass,
+  CalendarClock,
+  MessageSquareText,
+  SquarePen
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {

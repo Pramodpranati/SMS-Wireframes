@@ -1192,6 +1192,7 @@ export default function AdmissionForm() {
               placeholder="Enter father's name"
             />
           </div>
+          
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Occupation *</label>
             <input
@@ -1215,6 +1216,7 @@ export default function AdmissionForm() {
               />
               <button className='px-4 py-3 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
             </div>
+            <h4 className="text-blue-600 hover:underline p-2 cursor-pointer">view here</h4>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
@@ -1266,6 +1268,7 @@ export default function AdmissionForm() {
               />
               <button className='px-4 py-3 border border-gray-300 bg-white rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'><Upload /></button>
             </div>
+            <h4 className="text-blue-600 hover:underline p-2 cursor-pointer">view here</h4>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
@@ -1766,10 +1769,14 @@ export default function AdmissionForm() {
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Medium
             </label>
-            <input
-              type="text"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            />
+             <select id="board" name="board" className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+            >
+              <option value="">Select Medium</option>
+            <option value="english">English</option>
+            <option value="hindi">Hindi</option>
+            <option value="regional">Regional Language</option>
+            <option value="bilingual">Bilingual</option>
+            </select>
           </div>
         </div>
       </div>

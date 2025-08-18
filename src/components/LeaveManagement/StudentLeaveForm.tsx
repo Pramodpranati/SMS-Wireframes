@@ -131,7 +131,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
             onChange={(e) => setFormData({ ...formData, applicantName: e.target.value })}
             className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.applicantName ? 'border-red-500 ring-2 ring-red-200' : ''
               }`}
-            placeholder="Enter student's full name"
+            placeholder="Enter full name"
           />
           {errors.applicantName && (
             <p className="text-red-500 text-sm mt-1">{errors.applicantName}</p>
@@ -171,7 +171,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
             onChange={(e) => setFormData({ ...formData, admissionNumber: e.target.value })}
             className={`w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors ${errors.admissionNumber ? 'border-red-500 ring-2 ring-red-200' : ''
               }`}
-            placeholder="Enter admission number"
+            placeholder="Enter Staff ID/Admission No"
           />
           {errors.admissionNumber && (
             <p className="text-red-500 text-sm mt-1">{errors.admissionNumber}</p>
@@ -261,7 +261,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
                 value="AM"
                 className="h-4 w-4 text-blue-600 border-gray-300"
               />
-              FN
+              AM
             </label>
             </div>
              <div className="flex gap-4 mt-3">
@@ -272,7 +272,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
                 value="AM"
                 className="h-4 w-4 text-blue-600 border-gray-300"
               />
-              AN
+              PM
             </label>
             </div>
             </div>
@@ -307,7 +307,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
                 value="AM"
                 className="h-4 w-4 text-blue-600 border-gray-300"
               />
-              FN
+              AM
             </label>
             </div>
              <div className="flex gap-4 mt-3">
@@ -318,7 +318,7 @@ const StudentLeaveForm: React.FC<StudentLeaveFormProps> = ({ onSubmit }) => {
                 value="AM"
                 className="h-4 w-4 text-blue-600 border-gray-300"
               />
-              AN
+              PM
             </label>
             </div>
             </div>
