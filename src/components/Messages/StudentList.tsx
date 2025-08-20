@@ -108,13 +108,14 @@ const StudentList: React.FC<StudentListProps> = ({
                   </div>
                 </div>
                 
-                <div className="flex items-center justify-between mt-1">
+                {/* <div className="flex items-center justify-between mt-1">
                   <p className="text-sm text-gray-500">
                     Class {student.class}{student.section} • Roll #{student.rollNumber}
                   </p>
-                </div>
+                </div> */}
 
                 {/* Last Message Preview */}
+                
                 {chatRoom?.lastMessage && (
                   <p className="text-sm text-gray-600 truncate mt-1">
                     {chatRoom.lastMessage.senderId === student.id ? '' : 'You: '}

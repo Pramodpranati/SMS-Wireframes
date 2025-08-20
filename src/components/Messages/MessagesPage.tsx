@@ -211,12 +211,13 @@ const MessagesPage: React.FC = () => {
             onChange={(e) => setSelectedClass(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           >
-            <option value="all">All Classes</option>
-            {assignedClasses.map(classCode => (
+            <option value="all">All</option>
+            <option value="All Groups">Groups</option>
+            {/* {assignedClasses.map(classCode => (
               <option key={classCode} value={classCode}>
                 Class {classCode.replace('-', ' - Section ')}
               </option>
-            ))}
+            ))} */}
           </select>
         </div>
 

@@ -5,8 +5,8 @@ interface StudentMark {
   id: string;
   studentId: string;
   studentName: string;
-  class: string;
   rollNumber: string;
+  class:string;
   subjects: {
     english: number;
     mathematics: number;
@@ -45,8 +45,8 @@ const MarksheetManagement: React.FC = () => {
         id: '1',
         studentId: 'STU001',
         studentName: 'Abi',
-        class: '10th A',
         rollNumber: '001',
+        class:'',
         subjects: { english: 85, mathematics: 92, socialScience: 78, science: 88, hindi: 82 },
         totalMarks: 425,
         percentage: 85,
@@ -58,8 +58,8 @@ const MarksheetManagement: React.FC = () => {
         id: '2',
         studentId: 'STU002',
         studentName: 'Priya',
-        class: '10th A',
         rollNumber: '002',
+         class:'',
         subjects: { english: 92, mathematics: 88, socialScience: 85, science: 90, hindi: 87 },
         totalMarks: 442,
         percentage: 88.4,
@@ -71,11 +71,11 @@ const MarksheetManagement: React.FC = () => {
         id: '3',
         studentId: 'STU003',
         studentName: 'Rahul',
-        class: '10th B',
         rollNumber: '003',
+         class:'',
         subjects: { english: 76, mathematics: 82, socialScience: 79, science: 84, hindi: 78 },
         totalMarks: 399,
-        percentage: 79.8,
+        percentage: 69.8,
         grade: 'B',
         term: 'Term 1',
         examType: 'Final'
@@ -84,8 +84,8 @@ const MarksheetManagement: React.FC = () => {
         id: '4',
         studentId: 'STU004',
         studentName: 'Ananya',
-        class: '10th A',
         rollNumber: '004',
+         class:'',
         subjects: { english: 94, mathematics: 96, socialScience: 91, science: 93, hindi: 89 },
         totalMarks: 463,
         percentage: 92.6,
@@ -97,12 +97,25 @@ const MarksheetManagement: React.FC = () => {
         id: '5',
         studentId: 'STU005',
         studentName: 'Vikram',
-        class: '10th B',
         rollNumber: '005',
+         class:'',
         subjects: { english: 68, mathematics: 74, socialScience: 72, science: 76, hindi: 70 },
         totalMarks: 360,
         percentage: 72,
-        grade: 'B',
+        grade: 'B+',
+        term: 'Term 1',
+        examType: 'Final'
+      },
+      {
+        id: '6',
+        studentId: 'STU006',
+        studentName: 'Vishnu',
+        rollNumber: '006',
+         class:'',
+        subjects: { english: 58, mathematics: 64, socialScience: 62, science: 56, hindi: 70 },
+        totalMarks: 330,
+        percentage: 54.6,
+        grade: 'C',
         term: 'Term 1',
         examType: 'Final'
       }
@@ -137,6 +150,7 @@ const MarksheetManagement: React.FC = () => {
     switch (grade) {
       case 'A+': return 'text-green-600 bg-green-50';
       case 'A': return 'text-blue-600 bg-blue-50';
+      case 'B+': return 'text-orange-600 bg-orange-50';
       case 'B': return 'text-orange-600 bg-orange-50';
       case 'C': return 'text-red-600 bg-red-50';
       default: return 'text-gray-600 bg-gray-50';
@@ -146,8 +160,9 @@ const MarksheetManagement: React.FC = () => {
   const calculateGrade = (percentage: number): string => {
     if (percentage >= 90) return 'A+';
     if (percentage >= 80) return 'A';
-    if (percentage >= 70) return 'B';
-    if (percentage >= 60) return 'C';
+    if (percentage >= 70) return 'B+';
+    if (percentage >= 60) return 'B';
+    if (percentage >= 50) return 'C';
     return 'D';
   };
 
@@ -168,7 +183,7 @@ const MarksheetManagement: React.FC = () => {
         const totalMarks = Object.values(newSubjects).reduce((sum, mark) => sum + mark, 0);
         const percentage = (totalMarks / 500) * 100;
         const grade = calculateGrade(percentage);
-        
+
         return {
           ...student,
           subjects: newSubjects,
@@ -179,7 +194,7 @@ const MarksheetManagement: React.FC = () => {
       }
       return student;
     }));
-    
+
     setEditingStudent(null);
     setEditedMarks({});
   };
@@ -239,22 +254,23 @@ const MarksheetManagement: React.FC = () => {
                 ))}
               </select>
             </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3">
-            <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3">
+              {/* <button className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
               <Plus className="h-4 w-4" />
               Add Student
-            </button>
-            <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
-              <Download className="h-4 w-4" />
-              Export
-            </button>
-            <button className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
+            </button> */}
+              <button className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                <Download className="h-4 w-4" />
+                Export
+              </button>
+              {/* <button className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors">
               <Upload className="h-4 w-4" />
               Import
-            </button>
+            </button> */}
+            </div>
           </div>
         </div>
 
@@ -267,7 +283,7 @@ const MarksheetManagement: React.FC = () => {
           <div className="bg-white rounded-lg p-6 border border-gray-200">
             <h3 className="text-sm font-medium text-gray-600 mb-1">Average Score</h3>
             <p className="text-2xl font-bold text-gray-900">
-              {filteredStudents.length > 0 
+              {filteredStudents.length > 0
                 ? Math.round(filteredStudents.reduce((sum, s) => sum + s.percentage, 0) / filteredStudents.length)
                 : 0}%
             </p>
@@ -291,15 +307,15 @@ const MarksheetManagement: React.FC = () => {
               <thead className="bg-gray-50 border-b border-gray-200">
                 <tr>
                   <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Student</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Class</th>
+                  {/* <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Class</th> */}
                   {subjects.map(subject => (
                     <th key={subject.key} className="px-4 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                       {subject.name}
                     </th>
                   ))}
                   <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
-                  {/* <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">%</th>
-                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th> */}
+                  <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Percentage</th>
+                  {/* <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Grade</th> */}
                   <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
@@ -312,8 +328,8 @@ const MarksheetManagement: React.FC = () => {
                         <div className="text-sm text-gray-500">Roll: {student.rollNumber}</div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{student.class}</td>
-                    
+                    {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{student.class}</td> */}
+
                     {/* Subject Marks */}
                     {subjects.map(subject => (
                       <td key={subject.key} className="px-4 py-4 text-center">
@@ -327,21 +343,20 @@ const MarksheetManagement: React.FC = () => {
                             onChange={(e) => handleMarkChange(subject.key, parseInt(e.target.value) || 0)}
                           />
                         ) : (
-                          <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${
-                            student.subjects[subject.key as keyof typeof student.subjects] >= 90 ? 'text-green-700 bg-green-100' :
-                            student.subjects[subject.key as keyof typeof student.subjects] >= 80 ? 'text-blue-700 bg-blue-100' :
-                            student.subjects[subject.key as keyof typeof student.subjects] >= 70 ? 'text-orange-700 bg-orange-100' :
-                            'text-red-700 bg-red-100'
-                          }`}>
+                          <span className={`inline-block px-2 py-1 rounded text-sm font-medium ${student.subjects[subject.key as keyof typeof student.subjects] >= 90 ? 'text-green-700 bg-green-100' :
+                              student.subjects[subject.key as keyof typeof student.subjects] >= 80 ? 'text-blue-700 bg-blue-100' :
+                                student.subjects[subject.key as keyof typeof student.subjects] >= 70 ? 'text-orange-700 bg-orange-100' :
+                                  'text-red-700 bg-red-100'
+                            }`}>
                             {student.subjects[subject.key as keyof typeof student.subjects]}
                           </span>
                         )}
                       </td>
                     ))}
-                    
+
                     <td className="px-6 py-4 text-center text-sm font-medium text-gray-900">{student.totalMarks}</td>
-                    {/* <td className="px-6 py-4 text-center text-sm font-medium text-gray-900">{student.percentage.toFixed(1)}%</td>
-                    <td className="px-6 py-4 text-center">
+                    <td className="px-6 py-4 text-center text-sm font-medium text-gray-900">{student.percentage.toFixed(1)}%</td>
+                    {/* <td className="px-6 py-4 text-center">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getGradeColor(student.grade)}`}>
                         {student.grade}
                       </span>

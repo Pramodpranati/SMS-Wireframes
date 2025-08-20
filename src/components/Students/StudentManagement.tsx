@@ -51,8 +51,8 @@ const StudentManagement: React.FC = () => {
                 address: '123 Main Street',
                 city: 'New York',
                 state: 'NY',
+                country:'',
                 zipCode: '10001',
-                country: 'UK',
                 guardianName: 'Robert Doe',
                 guardianPhone: '+1 234 567 8900',
                 guardianEmail: 'robert.doe@email.com',
@@ -77,10 +77,9 @@ const StudentManagement: React.FC = () => {
                 dateOfBirth: '2006-07-22',
                 gender: 'female',
                 address: '456 Oak Avenue',
-                city: 'Los Angeles',
+                city: 'Los Angeles',country:'',
                 state: 'CA',
                 zipCode: '90001',
-                country: 'USA',
                 guardianName: 'Sarah Smith',
                 guardianPhone: '+1 234 567 8904',
                 guardianEmail: 'sarah.smith@email.com',
@@ -104,10 +103,9 @@ const StudentManagement: React.FC = () => {
                 dateOfBirth: '2004-11-08',
                 gender: 'male',
                 address: '789 Pine Road',
-                city: 'Chicago',
+                city: 'Chicago',country:'',
                 state: 'IL',
                 zipCode: '60601',
-                country: 'India',
                 guardianName: 'David Johnson',
                 guardianPhone: '+1 234 567 8907',
                 guardianEmail: 'david.j@email.com',
@@ -933,8 +931,9 @@ const StudentManagement: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="border-t pt-6">
-                    <h3 className="text-lg font-semibold mb-4">Extra Curricular Activity</h3>
+                <div className="border-t pt-6 ">
+                        <h3 className="text-lg font-semibold mb-4">Extra Curricular Activity</h3>
+
                     {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label className="block text-sm font-medium text-gray-700 mb-1"></label>
@@ -950,33 +949,55 @@ const StudentManagement: React.FC = () => {
                             </select>
                         </div>
                     </div> */}
-                    <div>
 
-                        <div className="flex flex-col gap-2">
-                            {["Cricket", "Dance", "Chess"].map((activity) => (
-                                <label key={activity} className="inline-flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        value={activity}
-                                        onChange={(e) => {
-                                            const value = e.target.value;
 
-                                            // setFormData((prevData) => {
-                                            //     const selected = new Set(prevData.activities || []);
-                                            //     if (isChecked) {
-                                            //         selected.add(value);
-                                            //     } else {
-                                            //         selected.delete(value);
-                                            //     }
-                                            //     return { ...prevData, activities: Array.from(selected) };
-                                            // });
-                                        }}
-                                        className="form-checkbox h-4 w-4 text-blue-600"
-                                    />
-                                    <span className="ml-2 text-gray-700">{activity}</span>
-                                </label>
-                            ))}
-                        </div>
+                    <div className="flex flex-col gap-2">
+
+                        {["Cricket", "Dance", "Chess"].map((activity) => (
+                            <label key={activity} className="inline-flex items-center">
+                                <input
+                                    type="checkbox"
+                                    value={activity}
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+
+                                        // setFormData((prevData) => {
+                                        //     const selected = new Set(prevData.activities || []);
+                                        //     if (isChecked) {
+                                        //         selected.add(value);
+                                        //     } else {
+                                        //         selected.delete(value);
+                                        //     }
+                                        //     return { ...prevData, activities: Array.from(selected) };
+                                        // });
+                                    }}
+                                    className="form-checkbox h-4 w-4 text-blue-600"
+                                />
+                                <span className="ml-2 text-gray-700">{activity}</span>
+                            </label>
+                        ))}
+                    </div>
+
+
+                    <div className='pb-5'>
+                        <label className="block text-sm font-bold text-gray-700 mb-2 mt-2">Route No:</label>
+                        {/* <input
+                  type="text"
+                  value={newGrade.name}
+                  onChange={(e) => setNewGrade({ name: e.target.value })}
+                  placeholder="e.g., Grade 1, Grade 2"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                /> */}
+                        <select
+                            className="w-40 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            defaultValue="A"
+                        >
+                            <option>Select Routes</option>
+                            <option value="route1">Route 1</option>
+                            <option value="route1a">Route 1A</option>
+                            <option value="route2">Route 2</option>
+                            <option value="route2a">Route 2A</option>
+                        </select>
                     </div>
 
                     {
