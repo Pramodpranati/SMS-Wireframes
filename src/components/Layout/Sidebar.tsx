@@ -17,7 +17,10 @@ import {
   UserRoundPlus,
   Users,
   MessageSquareText,
-  SquarePen
+  SquarePen,
+  ArrowRightFromLine,
+  FileDown,
+  Send
 } from 'lucide-react';
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -90,7 +93,7 @@ const navigationItems: NavigationItem[] = [
     icon: 'BookOpenCheck',
     roles: ['system_admin', 'management', 'teacher']
   },
-   {
+  {
     id: 'marksheetmanagement',
     label: 'Marksheet Management',
     icon: 'SquarePen',
@@ -126,10 +129,22 @@ const navigationItems: NavigationItem[] = [
     icon: 'Bell',
     roles: ['system_admin', 'management']
   },
-   {
+  {
     id: 'messageinput',
     label: 'Message',
     icon: 'MessageSquareText',
+    roles: ['system_admin', 'management']
+  },
+  {
+    id: 'compose',
+    label: 'Compose',
+    icon: 'Send',
+    roles: ['system_admin', 'management']
+  },
+  {
+    id: 'exportdashboard',
+    label: 'Report',
+    icon: 'FileDown',
     roles: ['system_admin', 'management']
   },
   {
@@ -159,7 +174,9 @@ const iconMap = {
   Hourglass,
   CalendarClock,
   MessageSquareText,
-  SquarePen
+  SquarePen,
+  FileDown,
+  Send
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {

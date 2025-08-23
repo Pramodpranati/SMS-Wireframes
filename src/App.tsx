@@ -22,6 +22,8 @@ import { EventManagement } from './components/EventManagement';
 import NotificationManagement from './components/NotificationManagement/Notification';
 import MessagesPage from './components/Messages/MessagesPage';
 import MarksheetManagement from './components/Marksheet/MarksheetManagement';
+import ExportDashboard from './components/ExportDashboard/ExportDashboard';
+import MessageComposer from './components/Compose/MessageComposer';
 
 function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -35,6 +37,29 @@ function App() {
     { id: 'subjects', label: 'Subjects', icon: BookOpen },
     { id: 'settings', label: 'Settings', icon: Settings },
   ];
+
+  const mockStudents = [
+    { id: '1', name: 'Alice Johnson', grade: '10', section: 'A', email: 'alice@email.com', phone: '+1234567890' },
+    { id: '2', name: 'Bob Smith', grade: '10', section: 'B', email: 'bob@email.com', phone: '+1234567891' },
+    { id: '3', name: 'Charlie Brown', grade: '11', section: 'A', email: 'charlie@email.com', phone: '+1234567892' },
+    { id: '4', name: 'Diana Prince', grade: '11', section: 'B', email: 'diana@email.com', phone: '+1234567893' },
+    { id: '5', name: 'Edward Wilson', grade: '12', section: 'A', email: 'edward@email.com', phone: '+1234567894' },
+    { id: '6', name: 'Fiona Davis', grade: '12', section: 'B', email: 'fiona@email.com', phone: '+1234567895' },
+    { id: '7', name: 'George Miller', grade: '9', section: 'A', email: 'george@email.com', phone: '+1234567896' },
+    { id: '8', name: 'Hannah Taylor', grade: '9', section: 'B', email: 'hannah@email.com', phone: '+1234567897' },
+    { id: '9', name: 'Ian Cooper', grade: '10', section: 'A', email: 'ian@email.com', phone: '+1234567898' },
+    { id: '10', name: 'Julia Martinez', grade: '11', section: 'A', email: 'julia@email.com', phone: '+1234567899' },
+  ];
+
+  const mockStaff = [
+    { id: '1', name: 'Dr. Sarah Thompson', type: 'teaching' as const, department: 'Mathematics', email: 'sarah@school.edu', phone: '+1234567900' },
+    { id: '2', name: 'Prof. Michael Chen', type: 'teaching' as const, department: 'Science', email: 'michael@school.edu', phone: '+1234567901' },
+    { id: '3', name: 'Lisa Anderson', type: 'non-teaching' as const, department: 'Administration', email: 'lisa@school.edu', phone: '+1234567902' },
+    { id: '4', name: 'John Roberts', type: 'non-teaching' as const, department: 'Maintenance', email: 'john@school.edu', phone: '+1234567903' },
+    { id: '5', name: 'Dr. Emily Watson', type: 'teaching' as const, department: 'English', email: 'emily@school.edu', phone: '+1234567904' },
+    { id: '6', name: 'Mark Johnson', type: 'non-teaching' as const, department: 'Security', email: 'mark@school.edu', phone: '+1234567905' },
+  ];
+
 
 
   const renderContent = () => {
@@ -59,13 +84,15 @@ function App() {
         return <StudentManagement />;
       case 'teachersassignment':
         return <TeacherAssignment />;
-         case 'marksheetmanagement':
+      case 'marksheetmanagement':
         return <MarksheetManagement />;
       case 'leave':
         return <LeaveManagement />;
-        case 'messageinput':
-        return <MessagesPage/>;
-         case 'notificationmanager':
+      case 'messageinput':
+        return <MessagesPage />;
+      case 'compose':
+        return <MessageComposer students={mockStudents} staff={mockStaff} />;
+      case 'notificationmanager':
         return <NotificationManagement />;
       case 'exam':
         return <ExamManagement />;
@@ -75,6 +102,8 @@ function App() {
         return <SpecialClassManagement />
       case 'eventmanagement':
         return <EventManagement />
+      case 'exportdashboard':
+        return <ExportDashboard />
       default:
         return <Dashboard />;
     }
