@@ -22,10 +22,37 @@ import { EventManagement } from './components/EventManagement';
 import NotificationManagement from './components/NotificationManagement/Notification';
 import MessagesPage from './components/Messages/MessagesPage';
 import MarksheetManagement from './components/Marksheet/MarksheetManagement';
-import ExportDashboard from './components/ExportDashboard/ExportDashboard';
 import MessageComposer from './components/Compose/MessageComposer';
+import StudentLists from './components/Reports/StudentLists';
+import TeacherLeaveManager from './components/TeacherLeave/TeacherLeaveManager';
+import TeacherDashboard from './components/TeacherTasks/TeacherDashboard';
+import TaskReports from './components/TeacherTasks/TaskReports';
+import { TeacherTaskProvider } from './contexts/TeacherTaskContext';
+import LeaveApproval from './components/TeacherTasks/LeaveApproval';
+import ExamDutyManager from './components/TeacherTasks/ExamDutyManager';
+import ExtraDutyManager from './components/TeacherTasks/ExtraDutyManager';
+import BranchManagement from './components/BranchManagement/BranchManagement';
+
+type ActiveSection =
+  | 'dashboard'
+  | 'students'
+  | 'admission'
+  | 'attendance'
+  | 'exams'
+  | 'grades'
+  | 'events'
+  | 'messages'
+  | 'leave'
+  | 'timetable'
+  | 'subjects'
+  | 'teachers'
+  | 'branches'
+  | 'users'
+  | 'settings';
 
 function App() {
+  const [activeSection, setActiveSection] = useState<ActiveSection>('dashboard');
+
   const [activeTab, setActiveTab] = useState('dashboard');
   const [activeModule, setActiveModule] = useState('leave');
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -84,6 +111,14 @@ function App() {
         return <StudentManagement />;
       case 'teachersassignment':
         return <TeacherAssignment />;
+      case 'tasklist':
+        return <div className='p-6'><TeacherDashboard onLeave={() => setActiveTab("leaveapproval")} onExam={() => setActiveTab("examduty")} onExtra={() => setActiveTab("extraduty")} /></div>;
+      case 'leaveapproval':
+        return <div className='p-6'><LeaveApproval /></div>;
+      case 'examduty':
+        return <div className='p-6'><ExamDutyManager /></div>;
+      case 'extraduty':
+        return <div className='p-6'><ExtraDutyManager /></div>;
       case 'marksheetmanagement':
         return <MarksheetManagement />;
       case 'leave':
@@ -98,71 +133,75 @@ function App() {
         return <ExamManagement />;
       case 'admissiondashboard':
         return <AdmissionDashboard />;
+      case 'branches':
+        return <BranchManagement />;
       case 'specialclass':
         return <SpecialClassManagement />
       case 'eventmanagement':
         return <EventManagement />
       case 'exportdashboard':
-        return <ExportDashboard />
+        return <StudentLists />
+      case 'teacheronleave':
+        return <TeacherLeaveManager />
       default:
         return <Dashboard />;
     }
   };
 
 
-  const SidebarContent = () => (
-    <div className="flex flex-col h-full bg-white border-r border-gray-200">
-      {/* Logo */}
-      <div className="flex items-center h-16 px-6 border-b border-gray-200">
-        <div className="flex items-center">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
-            <span className="text-white font-bold text-sm">SMS</span>
-          </div>
-          <span className="text-xl font-bold text-gray-900">School Management</span>
-        </div>
-      </div>
+  // const SidebarContent = () => (
+  //   <div className="flex flex-col h-full bg-white border-r border-gray-200">
+  //     {/* Logo */}
+  //     <div className="flex items-center h-16 px-6 border-b border-gray-200">
+  //       <div className="flex items-center">
+  //         <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+  //           <span className="text-white font-bold text-sm">SMS</span>
+  //         </div>
+  //         <span className="text-xl font-bold text-gray-900">School Management</span>
+  //       </div>
+  //     </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-4 py-6 space-y-2">
-        {navigationItems.map((item) => {
-          const Icon = item.icon;
-          return (
-            <button
-              key={item.id}
-              onClick={() => {
-                setActiveModule(item.id);
-                setSidebarOpen(false);
-              }}
-              className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-all duration-200 ${activeModule === item.id
-                ? 'bg-blue-600 text-white shadow-md'
-                : 'text-gray-700 hover:bg-gray-100'
-                }`}
-            >
-              <Icon className="h-5 w-5 mr-3" />
-              <span className="font-medium">{item.label}</span>
-            </button>
-          );
-        })}
-      </nav>
+  //     {/* Navigation */}
+  //     <nav className="flex-1 px-4 py-6 space-y-2">
+  //       {navigationItems.map((item) => {
+  //         const Icon = item.icon;
+  //         return (
+  //           <button
+  //             key={item.id}
+  //             onClick={() => {
+  //               setActiveModule(item.id);
+  //               setSidebarOpen(false);
+  //             }}
+  //             className={`w-full flex items-center px-4 py-3 text-left rounded-lg transition-all duration-200 ${activeModule === item.id
+  //               ? 'bg-blue-600 text-white shadow-md'
+  //               : 'text-gray-700 hover:bg-gray-100'
+  //               }`}
+  //           >
+  //             <Icon className="h-5 w-5 mr-3" />
+  //             <span className="font-medium">{item.label}</span>
+  //           </button>
+  //         );
+  //       })}
+  //     </nav>
 
-      {/* User Profile */}
-      <div className="border-t border-gray-200 p-4">
-        <div className="flex items-center space-x-3 mb-4">
-          <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-            <User className="h-6 w-6 text-gray-600" />
-          </div>
-          <div>
-            <p className="text-sm font-medium text-gray-900">John Doe</p>
-            <p className="text-xs text-gray-600">Administrator</p>
-          </div>
-        </div>
-        <button className="w-full flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
-          <LogOut className="h-4 w-4 mr-2" />
-          <span className="text-sm">Sign Out</span>
-        </button>
-      </div>
-    </div>
-  );
+  //     {/* User Profile */}
+  //     <div className="border-t border-gray-200 p-4">
+  //       <div className="flex items-center space-x-3 mb-4">
+  //         <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+  //           <User className="h-6 w-6 text-gray-600" />
+  //         </div>
+  //         <div>
+  //           <p className="text-sm font-medium text-gray-900">John Doe</p>
+  //           <p className="text-xs text-gray-600">Administrator</p>
+  //         </div>
+  //       </div>
+  //       <button className="w-full flex items-center px-3 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors">
+  //         <LogOut className="h-4 w-4 mr-2" />
+  //         <span className="text-sm">Sign Out</span>
+  //       </button>
+  //     </div>
+  //   </div>
+  // );
 
   // const renderContent = () => {
   //   switch (activeModule) {
@@ -195,17 +234,19 @@ function App() {
   return (
     <AuthProvider>
       <SchoolProvider>
-        <div className="min-h-screen bg-gray-50 flex">
-          <div>
-            <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+        <TeacherTaskProvider>
+          <div className="min-h-screen bg-gray-50 flex">
+            <div>
+              <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
+            </div>
+            <div className="flex-1 flex flex-col">
+              <Header />
+              <main className="flex-1 overflow-auto">
+                {renderContent()}
+              </main>
+            </div>
           </div>
-          <div className="flex-1 flex flex-col">
-            <Header />
-            <main className="flex-1 overflow-auto">
-              {renderContent()}
-            </main>
-          </div>
-        </div>
+        </TeacherTaskProvider>
       </SchoolProvider>
     </AuthProvider >
   );

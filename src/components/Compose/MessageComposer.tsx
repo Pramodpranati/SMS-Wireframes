@@ -155,6 +155,13 @@ const MessageComposer: React.FC<MessageComposerProps> = ({ students, staff }) =>
                   <Users className="w-5 h-5 text-blue-600" />
                   Student Filters
                 </h3>
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-4 w-4 text-blue-600"
+                  />
+                  <span>Select all</span>
+                </label>
               </div>
 
               {/* Grade Selection */}
@@ -198,15 +205,39 @@ const MessageComposer: React.FC<MessageComposerProps> = ({ students, staff }) =>
                   ))}
                 </div>
               </div>
+
+              <div className='mt-4'>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Select Individual Student
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  <select
+                    className="text-sm border border-gray-300 rounded px-3 py-1 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="today">STU001 - John</option>
+                    <option value="this_week">STU001 - Hendry</option>
+                    <option value="this_month">STU001 - Jones</option>
+                  </select>
+                </div>
+              </div>
+
             </div>
 
             {/* Staff Filters */}
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                <Users className="w-5 h-5 text-emerald-600" />
-                Staff Filters
-              </h3>
-
+              <div className='flex flex-row justify-between items-center mb-4'>
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                  <Users className="w-5 h-5 text-emerald-600" />
+                  Staff Filters
+                </h3>
+                <label className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    className="form-checkbox h-4 w-4 text-blue-600"
+                  />
+                  <span>Select all</span>
+                </label>
+              </div>
               <div className="space-y-3">
                 <button
                   onClick={() => handleStaffTypeToggle('teaching')}
@@ -291,7 +322,20 @@ const MessageComposer: React.FC<MessageComposerProps> = ({ students, staff }) =>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
                     <Calendar className="w-4 h-4 text-gray-500" />
-                    Schedule Date
+                    Start Date
+                  </label>
+                  <input
+                    type="date"
+                    value={scheduledDate}
+                    onChange={(e) => setScheduledDate(e.target.value)}
+                    min={new Date().toISOString().split('T')[0]}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                    <Calendar className="w-4 h-4 text-gray-500" />
+                    End Date
                   </label>
                   <input
                     type="date"

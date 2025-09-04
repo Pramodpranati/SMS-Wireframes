@@ -7,20 +7,20 @@ import {
   CalendarDays,
   CircleUserRound,
   Clock,
+  FileDown,
   GraduationCap,
   Hourglass,
+  MessageSquareText,
   MessagesSquare,
   NotebookPen,
   School,
+  Send,
   Settings,
+  SquarePen,
   UserCheck,
   UserRoundPlus,
+  FileInput,
   Users,
-  MessageSquareText,
-  SquarePen,
-  ArrowRightFromLine,
-  FileDown,
-  Send
 } from 'lucide-react';
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
@@ -69,12 +69,12 @@ const navigationItems: NavigationItem[] = [
     icon: 'GraduationCap',
     roles: ['system_admin', 'management', 'teacher']
   },
-  {
-    id: 'subjects',
-    label: 'Subjects',
-    icon: 'BookOpen',
-    roles: ['system_admin', 'management', 'teacher']
-  },
+  // {
+  //   id: 'subjects',
+  //   label: 'Subjects',
+  //   icon: 'BookOpen',
+  //   roles: ['system_admin', 'management', 'teacher']
+  // },
   {
     id: 'timetable',
     label: 'Time Table',
@@ -106,6 +106,12 @@ const navigationItems: NavigationItem[] = [
     roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
   },
   {
+    id: 'teacheronleave',
+    label: 'Teacher on Leave',
+    icon: 'CalendarClock',
+    roles: ['system_admin', 'management', 'teacher', 'student', 'parent']
+  },
+  {
     id: 'exam',
     label: 'Exam Management',
     icon: 'NotebookPen',
@@ -114,6 +120,12 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'teachersassignment',
     label: 'Teachers Assignment',
+    icon: 'BookMarked',
+    roles: ['system_admin', 'management', 'teacher']
+  },
+  {
+    id: 'tasklist',
+    label: 'Task List',
     icon: 'BookMarked',
     roles: ['system_admin', 'management', 'teacher']
   },
@@ -144,7 +156,13 @@ const navigationItems: NavigationItem[] = [
   {
     id: 'exportdashboard',
     label: 'Report',
-    icon: 'FileDown',
+    icon: 'FileInput',
+    roles: ['system_admin', 'management']
+  },
+  {
+    id: 'branches',
+    label: 'Report',
+    icon: 'FileInput',
     roles: ['system_admin', 'management']
   },
   {
@@ -176,12 +194,12 @@ const iconMap = {
   MessageSquareText,
   SquarePen,
   FileDown,
-  Send
+  Send,
+  FileInput
 };
 
 export const Sidebar: React.FC<SidebarProps> = ({ activeTab, onTabChange }) => {
   const { hasRole } = useAuth();
-
   const filteredItems = navigationItems.filter(item => hasRole(item.roles));
 
   return (

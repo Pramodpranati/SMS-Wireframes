@@ -99,7 +99,7 @@ export const Settings: React.FC = () => {
     "Lakshadweep",
     "Puducherry"
   ];
-const countries = [
+  const countries = [
     "Select Country",
     "Afghanistan",
     "Albania",
@@ -330,7 +330,7 @@ const countries = [
                 type="text"
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                 placeholder="Enter School Name"
+                placeholder="Enter School Name"
               />
             </div>
 
@@ -416,12 +416,12 @@ const countries = [
                   placeholder="Enter State"
                 /> */}
                 <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
-              {
-                listofStates.map((data, index) => (
-                  <option key={index} value={data}>{data}</option>
-                ))
-              }
-            </select>
+                  {
+                    listofStates.map((data, index) => (
+                      <option key={index} value={data}>{data}</option>
+                    ))
+                  }
+                </select>
               </div>
               <div className='flex-1'>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Country *</label>
@@ -431,13 +431,13 @@ const countries = [
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                   placeholder="Enter Country"
                 /> */}
-                 <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
-              {
-                countries.map((data, index) => (
-                  <option key={index} value={data}>{data}</option>
-                ))
-              }
-            </select>
+                <select name="" id="" className='w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200'>
+                  {
+                    countries.map((data, index) => (
+                      <option key={index} value={data}>{data}</option>
+                    ))
+                  }
+                </select>
               </div>
 
               <div className='flex-1'>
@@ -960,6 +960,26 @@ const countries = [
               <li>Route 1A</li>
               <li>Route 2</li>
               <li>Route 2A</li>
+            </ul>
+          </div>
+        </div>
+        <div className='bg-white rounded-lg shadow-md p-6'>
+          <div className="flex flex-row justify-between items-center">
+            <div className="flex flex-row items-center space-x-3 mb-6">
+              <UserCog className="w-6 h-6 text-blue-600" />
+              <h2 className="text-lg font-semibold text-gray-800">Subjects</h2>
+            </div>
+            <button className="px-4 py-2 float-end bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Add new
+            </button>
+          </div>
+          <div>
+
+            <ul className="list-disc list-inside text-sm text-gray-700">
+              <li className="ba_economics">English</li>
+              <li className="bcom_accounting">Maths</li>
+              <li className="bsc_cs">Science</li>
             </ul>
           </div>
         </div>

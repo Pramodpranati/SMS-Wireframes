@@ -1,15 +1,13 @@
-1. Auto Generate Employee code
+1. Automatically generate employee codes.
 2. Track the assignment history of teachers, including the grades and classes they have been assigned to.
-3. Display all attachments under the "Attachments" section or tab, including both Qualification and Professional documents. Allow users to upload files only through this section, and make it the only place where attachments can be edited.
-4. Auto Generate Student rollno/Admission no
-5. Highlight the current day for teachers time table.
-6. Auto fill the add student form when click the student application no, the data come from admission form details.
-7.Auto fill the details[Name,Id] in the Leave Form.
-8.Created a Group Chatfor Teacher to student/parents,Management to Teacher.
-9.Create a Comment box for Approve or Reject in the Special class[Describe the reason].
-10.Don't need separate page Subject and Time table [It is in the Setting pag with sub menu].
-
-
+3. Display all attachments under the **"Attachments"** section or tab, including both qualification and professional documents. Allow users to upload and edit files only through this section.
+4. Automatically generate student roll numbers/admission numbers.
+5. Highlight the current day on the teacher’s timetable.
+6. Automatically fill the **Add Student** form when clicking on a student’s application number. The data should be retrieved from the admission form details.
+7. Automatically fill in the name and ID fields in the Leave Form.
+8. Create a group chat feature for communication between teachers and students/parents, and between management and teachers.
+9. Add a comment box to the **Special Class** page for approval or rejection, allowing users to provide a reason.
+10. Do not create separate pages for **Subjects** and **Timetable**; include them as submenus under the **Settings** page.
 
 REPORT:
 (I):
